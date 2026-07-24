@@ -185,3 +185,32 @@ def test_summary_cannot_be_written_inside_source(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="outside the source"):
         batch_qa.write_summary({"passed": True}, root / "summary.json", root)
+
+
+def test_failed_check_evidence_reports_only_failures(tmp_path: Path) -> None:
+    reward = tmp_path / "reward"
+    reward.mkdir()
+    (reward / "evidence.json").write_text(
+        json.dumps(
+            {
+                "checks": [
+                    {"name": "ok", "passed": True, "stderr": ""},
+                    {
+                        "name": "bad",
+                        "passed": False,
+                        "returncode": 1,
+                        "stderr": "AssertionError",
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert batch_qa._failed_check_evidence(reward) == [
+        {
+            "name": "bad",
+            "returncode": 1,
+            "stderr": "AssertionError",
+        }
+    ]

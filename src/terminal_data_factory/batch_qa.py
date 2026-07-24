@@ -149,6 +149,53 @@ def _audit_environment(temp_home: Path) -> dict[str, str]:
     return env
 
 
+def _audit_failure_summary(report: Any, *, limit: int = 100) -> list[dict[str, Any]]:
+    """Extract portable failure evidence from heterogeneous audit schemas."""
+    failures: list[dict[str, Any]] = []
+
+    def visit(value: Any, path: tuple[str, ...]) -> None:
+        if len(failures) >= limit:
+            return
+        if isinstance(value, dict):
+            failed = value.get("passed") is False or value.get("release_pass") == 0
+            if failed:
+                useful = {
+                    key: item
+                    for key, item in value.items()
+                    if key
+                    in {
+                        "name",
+                        "gate",
+                        "step",
+                        "position",
+                        "mutant",
+                        "passed",
+                        "release_pass",
+                        "correctness",
+                        "expected_release_pass",
+                        "observed_release_pass",
+                        "checks_passed",
+                        "checks_total",
+                        "error",
+                    }
+                    and isinstance(item, (str, int, float, bool, type(None)))
+                }
+                failures.append(
+                    {
+                        "path": "/".join(path) or "$",
+                        "detail": useful,
+                    }
+                )
+            for key, item in value.items():
+                visit(item, (*path, str(key)))
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                visit(item, (*path, str(index)))
+
+    visit(report, ())
+    return failures
+
+
 def _run_audit_once(task: Path, timeout: int, run_number: int) -> dict[str, Any]:
     audit_script = task / "verifier/run_audit.py"
     if not audit_script.is_file():
@@ -183,12 +230,20 @@ def _run_audit_once(task: Path, timeout: int, run_number: int) -> dict[str, Any]
     report_present = report_path.is_file()
     report_sha256 = None
     report_passed = False
+    report_top_level_keys: list[str] = []
+    failure_summary: list[dict[str, Any]] = []
     error = None
     if report_present:
         raw = report_path.read_bytes()
         report_sha256 = hashlib.sha256(raw).hexdigest()
         try:
-            report_passed = json.loads(raw).get("passed") is True
+            report = json.loads(raw)
+            if isinstance(report, dict):
+                report_passed = report.get("passed") is True
+                report_top_level_keys = sorted(str(key) for key in report)
+                failure_summary = _audit_failure_summary(report)
+            else:
+                error = "audit-report.json top level is not an object"
         except (json.JSONDecodeError, UnicodeDecodeError):
             error = "audit-report.json is not valid JSON"
     else:
@@ -199,6 +254,8 @@ def _run_audit_once(task: Path, timeout: int, run_number: int) -> dict[str, Any]
         "report_present": report_present,
         "report_passed": report_passed,
         "report_sha256": report_sha256,
+        "report_top_level_keys": report_top_level_keys,
+        "failure_summary": failure_summary,
         "error": error,
     }
 
@@ -248,6 +305,35 @@ def _completed_detail(completed: subprocess.CompletedProcess[str]) -> dict[str, 
         "stdout_tail": completed.stdout[-1000:],
         "stderr_tail": completed.stderr[-1000:],
     }
+
+
+def _failed_check_evidence(reward: Path, *, limit: int = 50) -> list[dict[str, Any]]:
+    """Read verifier-owned evidence and retain only failed named checks."""
+    evidence_path = reward / "evidence.json"
+    if not evidence_path.is_file():
+        return []
+    try:
+        evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return []
+    raw_checks = evidence.get("checks", evidence.get("cases", []))
+    if not isinstance(raw_checks, list):
+        return []
+    failures: list[dict[str, Any]] = []
+    for item in raw_checks:
+        if not isinstance(item, dict) or item.get("passed") is not False:
+            continue
+        failures.append(
+            {
+                key: value
+                for key, value in item.items()
+                if key in {"name", "returncode", "stdout", "stderr", "error"}
+                and isinstance(value, (str, int, float, bool, type(None)))
+            }
+        )
+        if len(failures) >= limit:
+            break
+    return failures
 
 
 def _progressive_oracle_copy(task: Path, timeout: int) -> dict[str, Any]:
@@ -351,7 +437,7 @@ def _progressive_oracle_copy(task: Path, timeout: int) -> dict[str, Any]:
             if install_ok and smoke_path.is_file():
                 try:
                     completed = subprocess.run(
-                        [sys.executable, "-I", str(smoke_path)],
+                        [sys.executable, "-B", "-I", str(smoke_path)],
                         cwd=codebase,
                         env=env,
                         text=True,
@@ -425,6 +511,7 @@ def _progressive_oracle_copy(task: Path, timeout: int) -> dict[str, Any]:
                         metrics = loaded
                 except (json.JSONDecodeError, UnicodeDecodeError):
                     pass
+            failed_checks = _failed_check_evidence(reward)
             step_passed = (
                 install_ok
                 and smoke_detail.get("returncode") == 0
@@ -441,6 +528,7 @@ def _progressive_oracle_copy(task: Path, timeout: int) -> dict[str, Any]:
                     "public_smoke": smoke_detail,
                     "verifier": verifier_detail,
                     "metrics": metrics,
+                    "failed_checks": failed_checks,
                 }
             )
     return {

@@ -66,7 +66,42 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=infra/src \
 The independent QA runner does not trust a task's own `run_audit.py` for
 Oracle correctness. For every Step it creates a fresh workspace, installs
 solutions 1…N, runs the public smoke, runs the strict verifier, and separately
-counts checks, smokes, and mutants from source.
+counts checks, smokes, and mutants from source. Failed named checks and their
+bounded tracebacks are retained as repair evidence.
+
+## QA-gated repair generations
+
+Failed API generations are repaired through immutable, monotonic generations:
+
+```sh
+PYTHONPATH=src python scripts/run_task_repair_workers.py \
+  --tasks-root candidates \
+  --qa-report evidence/BATCH_QA.json \
+  --output-root repairs \
+  --prompt data_infra/prompts/task_repair.md \
+  --summary evidence/REPAIR_WORKERS.json
+
+PYTHONPATH=src python scripts/apply_task_repairs.py \
+  --tasks-root candidates \
+  --repairs-root repairs \
+  --output-root candidates-repaired \
+  --evidence evidence/APPLY.json
+
+PYTHONPATH=src python scripts/promote_task_repairs.py \
+  --before-root candidates \
+  --after-root candidates-repaired \
+  --before-qa evidence/BATCH_QA.json \
+  --after-qa evidence/BATCH_QA_REPAIRED.json \
+  --output-root candidates-next \
+  --evidence evidence/PROMOTE.json
+```
+
+The worker accepts only bounded complete-file replacements under
+`environment/`, `steps/`, and `verifier/`. It cannot replace task metadata or
+generated audit reports. Promotion happens per task only when the independent
+QA score strictly improves; regressions and no-op repairs retain the prior
+generation. The score includes full release gates, Step pass count, and
+aggregate per-check correctness so partial but real progress is not discarded.
 
 ## Repository layout
 
@@ -74,7 +109,7 @@ counts checks, smokes, and mutants from source.
   multi-step validator, and independent batch QA;
 - `data_infra/`: operator catalog, pipeline DAG, inputs, and scale-out plan;
 - `scripts/`: deterministic API-worker, compiler, normalizer, materializer,
-  and handoff builders;
+  repair, monotonic-promotion, and handoff builders;
 - `tests/`: unit and regression tests, including the progressive-Oracle
   false-positive regression;
 - `examples/api-batch-10-v1/`: self-contained expert-review handoff and
