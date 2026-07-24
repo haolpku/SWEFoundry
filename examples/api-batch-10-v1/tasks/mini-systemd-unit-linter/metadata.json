@@ -1,0 +1,44 @@
+{
+  "difficulty": {
+    "evidence_required": "repeated cross-family target-agent rollouts",
+    "label": "uncalibrated-long-horizon-candidate"
+  },
+  "license": {
+    "distribution": "expert-review-only",
+    "status": "pending-owner-approval"
+  },
+  "product_type": "multi-step-greenfield",
+  "provenance": {
+    "contains_proprietary_data": false,
+    "copied_code": false,
+    "kind": "open-source-concept-study",
+    "owner": "Terminal Data Factory Team",
+    "source": "https://github.com/systemd/systemd",
+    "source_license": "LGPL-2.1-or-later"
+  },
+  "quality": {
+    "behavioral_checks": 38,
+    "behavioral_checks_by_step": {
+      "1-parse-unit-files-deterministically": 7,
+      "2-validate-dependency-integrity": 7,
+      "3-compute-boot-activation-order": 8,
+      "4-replay-failure-recovery": 8,
+      "5-integrated-unit-audit": 8
+    },
+    "curated_false_positives": 5,
+    "local_audit": {
+      "cumulative_oracle_steps_passed": 5,
+      "cumulative_public_smokes_passed": 5,
+      "independent_check_inventory_confirmed": true,
+      "isolation_probe_passed": true,
+      "repeat_audit_runs": 2,
+      "starter_steps_rejected": 5,
+      "step_mutants_rejected": 5
+    },
+    "target_agent_rollouts": 0
+  },
+  "release_status": "verifier-audited",
+  "schema_version": "1.0",
+  "steps": 5,
+  "task_id": "mini-systemd-unit-linter"
+}

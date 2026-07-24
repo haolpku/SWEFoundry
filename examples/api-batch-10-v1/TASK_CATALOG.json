@@ -1,0 +1,111 @@
+{
+  "batch_id": "api_batch_10_v1",
+  "behavioral_checks": 409,
+  "cumulative_public_smokes_passed": 50,
+  "isolation_probes_passed": 10,
+  "mutants_rejected": 50,
+  "open_gates": [
+    "Harbor Oracle/Nop container execution",
+    "cross-model-family target-agent rollout",
+    "difficulty calibration",
+    "expert semantic and license approval"
+  ],
+  "oracle_steps_passed": 50,
+  "schema_version": "1.0",
+  "starter_steps_rejected": 50,
+  "status": "verifier-audited-expert-review",
+  "target_agent_rollouts": 0,
+  "task_count": 10,
+  "tasks": [
+    {
+      "behavioral_checks": 41,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://github.com/automerge/automerge",
+      "source_license": "MIT",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-crdt-notebook-engine"
+    },
+    {
+      "behavioral_checks": 43,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://www.rfc-editor.org/rfc/rfc1035",
+      "source_license": "IETF Trust Legal Provisions",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-dns-zone-auditor"
+    },
+    {
+      "behavioral_checks": 43,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://www.rfc-editor.org/rfc/rfc9111",
+      "source_license": "IETF Trust Legal Provisions",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-http-cache-engine"
+    },
+    {
+      "behavioral_checks": 41,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://www.rfc-editor.org/rfc/rfc5545",
+      "source_license": "IETF Trust Legal Provisions",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-ical-sync-engine"
+    },
+    {
+      "behavioral_checks": 42,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://github.com/eclipse-mosquitto/mosquitto",
+      "source_license": "EPL-2.0",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-mqtt-session-broker"
+    },
+    {
+      "behavioral_checks": 41,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://github.com/the-tcpdump-group/libpcap",
+      "source_license": "BSD-3-Clause",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-pcap-stream-reassembler"
+    },
+    {
+      "behavioral_checks": 43,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://www.w3.org/TR/png/",
+      "source_license": "W3C Document License",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-png-asset-pipeline"
+    },
+    {
+      "behavioral_checks": 36,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://pubs.opengroup.org/onlinepubs/9699919799/functions/rename.html",
+      "source_license": "Open Group Base Specifications Issue 7 terms",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-posix-manifest-installer"
+    },
+    {
+      "behavioral_checks": 38,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://github.com/systemd/systemd",
+      "source_license": "LGPL-2.1-or-later",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-systemd-unit-linter"
+    },
+    {
+      "behavioral_checks": 41,
+      "difficulty": "uncalibrated-long-horizon-candidate",
+      "release_status": "verifier-audited",
+      "source": "https://github.com/WebAssembly/spec",
+      "source_license": "Apache-2.0",
+      "target_agent_rollouts": 0,
+      "task_id": "mini-wasm-module-auditor"
+    }
+  ]
+}

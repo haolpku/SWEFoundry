@@ -1,0 +1,35 @@
+{
+  "changes": [
+    "linked public contract in steps/1-read-wasm-binary-sections/instruction.md",
+    "isolated verifier process in steps/1-read-wasm-binary-sections/tests/test.sh",
+    "declared step-1 checks in steps/1-read-wasm-binary-sections/tests/verifier.py",
+    "linked public contract in steps/2-decode-type-import-and-export-metadata/instruction.md",
+    "isolated verifier process in steps/2-decode-type-import-and-export-metadata/tests/test.sh",
+    "declared step-2 checks in steps/2-decode-type-import-and-export-metadata/tests/verifier.py",
+    "linked public contract in steps/3-validate-structural-integrity/instruction.md",
+    "isolated verifier process in steps/3-validate-structural-integrity/tests/test.sh",
+    "declared step-3 checks in steps/3-validate-structural-integrity/tests/verifier.py",
+    "linked public contract in steps/4-report-compatibility-migrations/instruction.md",
+    "isolated verifier process in steps/4-report-compatibility-migrations/tests/test.sh",
+    "declared step-4 checks in steps/4-report-compatibility-migrations/tests/verifier.py",
+    "linked public contract in steps/5-integrated-wasm-audit/instruction.md",
+    "isolated verifier process in steps/5-integrated-wasm-audit/tests/test.sh",
+    "declared step-5 checks in steps/5-integrated-wasm-audit/tests/verifier.py",
+    "declared static shared CHECKS registry in step_runner",
+    "moved verifier/mutants/fp1_accepts_truncated_section.py to verifier/anti_cheat/fp1_accepts_truncated_section.py",
+    "moved verifier/mutants/fp2_single_index_space.py to verifier/anti_cheat/fp2_single_index_space.py",
+    "moved verifier/mutants/fp3_custom_breaks_order.py to verifier/anti_cheat/fp3_custom_breaks_order.py",
+    "moved verifier/mutants/fp4_rewrites_input.py to verifier/anti_cheat/fp4_rewrites_input.py",
+    "moved verifier/mutants/fp5_summary_before_validation.py to verifier/anti_cheat/fp5_summary_before_validation.py",
+    "updated audit mutant directory",
+    "added explicit audit passed/task_id fields"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_accepts_truncated_section.py",
+    "verifier/anti_cheat/fp2_single_index_space.py",
+    "verifier/anti_cheat/fp3_custom_breaks_order.py",
+    "verifier/anti_cheat/fp4_rewrites_input.py",
+    "verifier/anti_cheat/fp5_summary_before_validation.py"
+  ],
+  "task_id": "mini-wasm-module-auditor"
+}

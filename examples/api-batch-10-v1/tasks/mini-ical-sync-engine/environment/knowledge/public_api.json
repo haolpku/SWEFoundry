@@ -1,0 +1,70 @@
+{
+  "package": "mini_ical_sync_engine",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-icalendar-components",
+      "number": 1,
+      "public_api": [
+        "class IcalEvent:",
+        "def parse_icalendar(text: str) -> list[IcalEvent]"
+      ],
+      "public_cases": [
+        "folded-summary-parses",
+        "missing-uid-raises"
+      ]
+    },
+    {
+      "name": "2-expand-bounded-recurrences",
+      "number": 2,
+      "public_api": [
+        "class IcalOccurrence:",
+        "def expand_ical_recurrences(events: list[IcalEvent], start: str, end: str) -> list[IcalOccurrence]"
+      ],
+      "public_cases": [
+        "daily-count-expanded",
+        "exdate-removes-occurrence"
+      ]
+    },
+    {
+      "name": "3-apply-incremental-sync-changes",
+      "number": 3,
+      "public_api": [
+        "class IcalSyncChange:",
+        "def apply_ical_sync(base: list[IcalEvent], changes: list[IcalSyncChange]) -> list[IcalEvent]"
+      ],
+      "public_cases": [
+        "higher-sequence-update-wins",
+        "delete-tombstone-hides-event"
+      ]
+    },
+    {
+      "name": "4-resolve-sync-conflicts",
+      "number": 4,
+      "public_api": [
+        "class IcalConflictDecision:",
+        "def resolve_ical_conflicts(candidates: list[IcalEvent]) -> list[IcalConflictDecision]"
+      ],
+      "public_cases": [
+        "sequence-breaks-conflict",
+        "tombstone-wins-on-newer-update"
+      ]
+    },
+    {
+      "name": "5-integrated-calendar-sync-recovery",
+      "number": 5,
+      "public_api": [
+        "class IcalSyncAuditReport:",
+        "def audit_ical_sync(snapshot: str, incoming: str, window_start: str, window_end: str) -> IcalSyncAuditReport"
+      ],
+      "public_cases": [
+        "incremental-sync-audit",
+        "snapshot-migration-audit"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "package": "mini_systemd_unit_linter",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-unit-files-deterministically",
+      "number": 1,
+      "public_api": [
+        "class UnitFile:",
+        "def load_units(paths: list[str]) -> list[UnitFile]"
+      ],
+      "public_cases": [
+        "service-with-install-loads",
+        "duplicate-execstart-raises"
+      ]
+    },
+    {
+      "name": "2-validate-dependency-integrity",
+      "number": 2,
+      "public_api": [
+        "class UnitProblem:",
+        "def validate_unit_graph(units: list[UnitFile]) -> list[UnitProblem]"
+      ],
+      "public_cases": [
+        "missing-required-unit-reported",
+        "wanted-missing-unit-warning"
+      ]
+    },
+    {
+      "name": "3-compute-boot-activation-order",
+      "number": 3,
+      "public_api": [
+        "class DependencyCycleError(Exception):",
+        "def plan_activation(units: list[UnitFile], target: str) -> list[str]"
+      ],
+      "public_cases": [
+        "simple-after-order",
+        "cycle-raises-with-witness"
+      ]
+    },
+    {
+      "name": "4-replay-failure-recovery",
+      "number": 4,
+      "public_api": [
+        "class BootReplay:",
+        "def replay_activation(units: list[UnitFile], plan: list[str], failed: set[str]) -> BootReplay"
+      ],
+      "public_cases": [
+        "required-failure-skips-dependent",
+        "wanted-failure-continues"
+      ]
+    },
+    {
+      "name": "5-integrated-unit-audit",
+      "number": 5,
+      "public_api": [
+        "class UnitAuditReport:",
+        "def audit_units(paths: list[str], target: str, failed: set[str]) -> UnitAuditReport"
+      ],
+      "public_cases": [
+        "healthy-boot-audit",
+        "cycle-audit-reports-error"
+      ]
+    }
+  ]
+}

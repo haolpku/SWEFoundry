@@ -1,0 +1,70 @@
+{
+  "package": "pcap_reassembler",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-classic-pcap-records",
+      "number": 1,
+      "public_api": [
+        "class PcapPacket:",
+        "def parse_pcap(data: bytes) -> list[PcapPacket]"
+      ],
+      "public_cases": [
+        "single-packet-pcap",
+        "truncated-record-raises"
+      ]
+    },
+    {
+      "name": "2-decode-ethernet-ipv4-tcp",
+      "number": 2,
+      "public_api": [
+        "class TcpSegment:",
+        "def decode_tcp_segments(packets: list[PcapPacket]) -> list[TcpSegment]"
+      ],
+      "public_cases": [
+        "ipv4-tcp-segment",
+        "udp-frame-ignored"
+      ]
+    },
+    {
+      "name": "3-reassemble-tcp-streams",
+      "number": 3,
+      "public_api": [
+        "class TcpStream:",
+        "def reassemble_tcp_streams(segments: list[TcpSegment]) -> list[TcpStream]"
+      ],
+      "public_cases": [
+        "out-of-order-reassembled",
+        "retransmission-deduplicated"
+      ]
+    },
+    {
+      "name": "4-emit-deterministic-timeout-events",
+      "number": 4,
+      "public_api": [
+        "class TcpTimeoutEvent:",
+        "def compute_tcp_timeouts(segments: list[TcpSegment], idle_seconds: int) -> list[TcpTimeoutEvent]"
+      ],
+      "public_cases": [
+        "idle-flow-timeout",
+        "closed-flow-no-timeout"
+      ]
+    },
+    {
+      "name": "5-integrated-pcap-audit-recovery",
+      "number": 5,
+      "public_api": [
+        "class PcapAuditReport:",
+        "def audit_pcap_streams(data: bytes, checkpoint: bytes | None, idle_seconds: int) -> PcapAuditReport"
+      ],
+      "public_cases": [
+        "complete-stream-audit",
+        "truncated-capture-recovery"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "partition-log-recovery",
+    "title": "Offline partition log with recovery and integrity",
+    "domain": "streaming-systems",
+    "source_uri": "https://github.com/apache/kafka",
+    "license": "Apache-2.0",
+    "provenance": {
+      "kind": "open-source-concept-study",
+      "copied_code": false,
+      "review_required": true
+    },
+    "text": "Design an offline educational system around durable append records, deterministic partitions, offset transactions, atomic compaction, crash recovery, snapshot integrity, and read-only audit. The task must be independently implemented and must not copy upstream code.",
+    "capabilities": [
+      "framed append log",
+      "consumer offsets",
+      "partitioned topics",
+      "retention compaction",
+      "snapshot integrity"
+    ],
+    "stages": [
+      {
+        "id": "1-framed-append-log",
+        "title": "Framed append log",
+        "instruction": "Implement a durable framed append log with checksums, recovery, stable offsets, and non-mutating invalid writes.",
+        "public_api": [
+          "Record(offset, key, value, timestamp_ms)",
+          "AppendLog(path).append/read/recover"
+        ],
+        "public_cases": [
+          "append_round_trip",
+          "reopen_preserves_offsets"
+        ],
+        "hidden_categories": [
+          "checksum corruption",
+          "torn-tail recovery",
+          "read-only validation"
+        ],
+        "mutant": {
+          "name": "skip_crc_validation",
+          "deterministic_fault": "accept every checksum without recomputation"
+        }
+      },
+      {
+        "id": "2-consumer-offsets",
+        "title": "Consumer offsets",
+        "instruction": "Implement transactional consumer offsets with monotonic commits, generations, canonical persistence, and strict group validation.",
+        "public_api": [
+          "OffsetStore(path).commit/get/groups"
+        ],
+        "public_cases": [
+          "commit_and_reload",
+          "reject_offset_regression"
+        ],
+        "hidden_categories": [
+          "generation fencing",
+          "atomic persistence",
+          "canonical encoding"
+        ],
+        "mutant": {
+          "name": "allow_offset_regression",
+          "deterministic_fault": "accept every lower committed offset"
+        }
+      },
+      {
+        "id": "3-partitioned-topics",
+        "title": "Partitioned topics",
+        "instruction": "Implement immutable topic metadata, deterministic SHA-256 key partitioning, merged reads, and strict partition bounds.",
+        "public_api": [
+          "Topic(root, name, partition_count).partition_for/append/read_partition/read_merged"
+        ],
+        "public_cases": [
+          "stable_key_partition",
+          "merged_read_order"
+        ],
+        "hidden_categories": [
+          "metadata immutability",
+          "partition bounds",
+          "tie ordering"
+        ],
+        "mutant": {
+          "name": "shift_partition",
+          "deterministic_fault": "shift the correct SHA-256 partition by one modulo partition count"
+        }
+      },
+      {
+        "id": "4-retention-compaction",
+        "title": "Retention and compaction",
+        "instruction": "Implement atomic retention and key compaction while preserving logical offsets and recovering interrupted rewrites safely.",
+        "public_api": [
+          "Maintenance(topic).plan/apply/recover"
+        ],
+        "public_cases": [
+          "compact_keeps_latest_key",
+          "retention_preserves_offsets"
+        ],
+        "hidden_categories": [
+          "interrupted rewrite",
+          "offset preservation",
+          "idempotent recovery"
+        ],
+        "mutant": {
+          "name": "renumber_after_compaction",
+          "deterministic_fault": "rewrite surviving records with contiguous offsets from zero"
+        }
+      },
+      {
+        "id": "5-snapshot-integrity",
+        "title": "Snapshot integrity",
+        "instruction": "Implement deterministic snapshots, integrity manifests, atomic restore, and read-only reporting for missing or malformed partitions.",
+        "public_api": [
+          "SnapshotManager(topic).create/restore/audit"
+        ],
+        "public_cases": [
+          "snapshot_restore_round_trip",
+          "audit_clean_snapshot"
+        ],
+        "hidden_categories": [
+          "malformed metadata",
+          "missing and unexpected files",
+          "read-only audit"
+        ],
+        "mutant": {
+          "name": "audit_always_clean",
+          "deterministic_fault": "return an empty error list for every snapshot"
+        }
+      }
+    ]
+  },
+  {
+    "id": "unlicensed-cache-idea",
+    "title": "Unlicensed cache idea",
+    "domain": "developer-tooling",
+    "source_uri": "",
+    "license": "",
+    "text": "A vague cache idea without enough provenance or engineering stages.",
+    "capabilities": [
+      "cache"
+    ]
+  }
+]

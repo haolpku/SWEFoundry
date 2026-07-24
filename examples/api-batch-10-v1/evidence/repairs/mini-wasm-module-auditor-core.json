@@ -1,0 +1,10 @@
+{
+  "changes": [
+    "made solution source task-relative in steps/1-read-wasm-binary-sections/solution/solve.sh",
+    "made solution source task-relative in steps/2-decode-type-import-and-export-metadata/solution/solve.sh",
+    "made solution source task-relative in steps/3-validate-structural-integrity/solution/solve.sh",
+    "made solution source task-relative in steps/4-report-compatibility-migrations/solution/solve.sh",
+    "made solution source task-relative in steps/5-integrated-wasm-audit/solution/solve.sh"
+  ],
+  "task_id": "mini-wasm-module-auditor"
+}

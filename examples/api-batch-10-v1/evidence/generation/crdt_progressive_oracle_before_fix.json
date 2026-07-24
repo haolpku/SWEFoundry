@@ -1,0 +1,221 @@
+{
+  "passed": false,
+  "steps": [
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 1,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "1-parse-immutable-operations",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 2,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "2-validate-causal-dag",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        }
+      ],
+      "metrics": {
+        "code_quality": 0.0,
+        "correctness": 0.0,
+        "efficiency": 0.0,
+        "reasoning": 0.0,
+        "release_pass": 0,
+        "weighted_total": 0.0
+      },
+      "passed": false,
+      "position": 3,
+      "public_smoke": {
+        "returncode": 1,
+        "stderr_tail": "Traceback (most recent call last):\n  File \"/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-3/workspace/environment/codebase/public_contract_tests/step_03_smoke.py\", line 9, in <module>\n    from crdtnotebook import merge_notebook_text, parse_notebook_ops\n  File \"/private/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-3/workspace/environment/codebase/crdtnotebook/__init__.py\", line 2, in <module>\n    from .engine import (\nImportError: cannot import name 'CrdtCompactionPlan' from 'crdtnotebook.engine' (/private/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-3/workspace/environment/codebase/crdtnotebook/engine.py)\n",
+        "stdout_tail": ""
+      },
+      "step": "3-merge-notebook-text-deterministically",
+      "verifier": {
+        "returncode": 1,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "4-compute-frontiers-and-compaction-plan"
+        }
+      ],
+      "metrics": {
+        "code_quality": 0.0,
+        "correctness": 0.0,
+        "efficiency": 0.0,
+        "reasoning": 0.0,
+        "release_pass": 0,
+        "weighted_total": 0.0
+      },
+      "passed": false,
+      "position": 4,
+      "public_smoke": {
+        "returncode": 1,
+        "stderr_tail": "Traceback (most recent call last):\n  File \"/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-4/workspace/environment/codebase/public_contract_tests/step_04_smoke.py\", line 9, in <module>\n    from crdtnotebook import parse_notebook_ops, plan_notebook_compaction\n  File \"/private/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-4/workspace/environment/codebase/crdtnotebook/__init__.py\", line 2, in <module>\n    from .engine import (\nImportError: cannot import name 'CrdtCompactionPlan' from 'crdtnotebook.engine' (/private/var/folders/tv/js8mj1914sv2y8d1vdv51jg00000gn/T/tdf-progressive-oracle-mini-crdt-notebook-engine-ka39nnpc/step-4/workspace/environment/codebase/crdtnotebook/engine.py)\n",
+        "stdout_tail": ""
+      },
+      "step": "4-compute-frontiers-and-compaction-plan",
+      "verifier": {
+        "returncode": 1,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "4-compute-frontiers-and-compaction-plan"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "5-integrated-notebook-recovery-and-migration"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 5,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "5-integrated-notebook-recovery-and-migration",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    }
+  ],
+  "steps_passed": 3
+}

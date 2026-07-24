@@ -1,0 +1,47 @@
+{
+  "criteria": [
+    {
+      "checks": [
+        "Each Step adds material domain behavior.",
+        "Step 5 regresses Steps 1 through 4."
+      ],
+      "id": "semantic_depth",
+      "weight": 0.3
+    },
+    {
+      "checks": [
+        "Checks are black-box and subprocess-isolated.",
+        "Five deterministic mutants cover Steps 1 through 5."
+      ],
+      "id": "verifier_strength",
+      "weight": 0.3
+    },
+    {
+      "checks": [
+        "Instructions, public API and hidden checks agree.",
+        "No hidden check requires an undisclosed public name."
+      ],
+      "id": "contract_alignment",
+      "weight": 0.2
+    },
+    {
+      "checks": [
+        "Source is https://github.com/WebAssembly/spec under Apache-2.0.",
+        "No upstream code or proprietary data is copied."
+      ],
+      "id": "provenance_hygiene",
+      "weight": 0.1
+    },
+    {
+      "checks": [
+        "Static quality is not represented as calibrated difficulty.",
+        "Cross-family repeated target-agent rollouts are required."
+      ],
+      "id": "calibration",
+      "weight": 0.1
+    }
+  ],
+  "review_type": "expert-review-only",
+  "task_id": "mini-wasm-module-auditor",
+  "version": "1.0"
+}

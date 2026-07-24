@@ -1,0 +1,86 @@
+{
+  "gates": [
+    {
+      "name": "fp1_input_order_events_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "fp2_hash_matches_partial_level_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "fp3_qos1_as_qos0_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "fp4_uses_live_expiry_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "fp5_drops_retained_after_recovery_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "sitecustomize_and_pythonpath_isolation",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-1_oracle_release_pass_is_1",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-1_starter_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "step-2_oracle_release_pass_is_1",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-2_starter_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "step-3_oracle_release_pass_is_1",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-3_starter_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "step-4_oracle_release_pass_is_1",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-4_starter_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    },
+    {
+      "name": "step-5_oracle_release_pass_is_1",
+      "passed": true,
+      "release_pass": 1
+    },
+    {
+      "name": "step-5_starter_release_pass_is_0",
+      "passed": true,
+      "release_pass": 0
+    }
+  ],
+  "passed": true,
+  "task_id": "mini-mqtt-session-broker"
+}

@@ -1,0 +1,70 @@
+{
+  "package": "png_asset_pipeline",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-png-chunks",
+      "number": 1,
+      "public_api": [
+        "class PngChunk:",
+        "def parse_png_chunks(data: bytes) -> list[PngChunk]"
+      ],
+      "public_cases": [
+        "minimal-png-chunks",
+        "bad-signature-raises"
+      ]
+    },
+    {
+      "name": "2-verify-crc-and-chunk-invariants",
+      "number": 2,
+      "public_api": [
+        "class PngProblem:",
+        "def validate_png_chunks(chunks: list[PngChunk]) -> list[PngProblem]"
+      ],
+      "public_cases": [
+        "crc-mismatch-reported",
+        "idat-before-ihdr-reported"
+      ]
+    },
+    {
+      "name": "3-extract-deterministic-asset-metadata",
+      "number": 3,
+      "public_api": [
+        "class PngMetadata:",
+        "def extract_png_metadata(chunks: list[PngChunk]) -> PngMetadata"
+      ],
+      "public_cases": [
+        "ihdr-dimensions-extracted",
+        "text-key-sorted"
+      ]
+    },
+    {
+      "name": "4-plan-deterministic-png-cleanup",
+      "number": 4,
+      "public_api": [
+        "class PngCleanupAction:",
+        "def plan_png_cleanup(chunks: list[PngChunk]) -> list[PngCleanupAction]"
+      ],
+      "public_cases": [
+        "duplicate-text-removal-planned",
+        "clean-png-empty-plan"
+      ]
+    },
+    {
+      "name": "5-integrated-png-audit",
+      "number": 5,
+      "public_api": [
+        "class PngAuditReport:",
+        "def audit_png(data: bytes) -> PngAuditReport"
+      ],
+      "public_cases": [
+        "valid-png-audit",
+        "corrupt-ancillary-audit"
+      ]
+    }
+  ]
+}

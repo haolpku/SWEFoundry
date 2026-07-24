@@ -1,0 +1,15 @@
+# Public contract tests for mini-dns-zone-auditor
+
+These smoke tests are intentionally small public examples. Each file inserts the codebase parent directory into sys.path before importing dns_zone_auditor.
+
+Disclosed behavioral contract names used by the black-box verifier:
+
+Step 1 hidden/behavior names: origin_relative_names_case_canonicalization, default_ttl_and_owner_inheritance, txt_with_spaces_and_comments, soa_parentheses_numeric_and_names, malformed_directives_raise_valueerror, canonical_sorted_records, origin_directive_and_aaaa_normalization, read_only_state_no_input_change.
+
+Step 2 hidden/behavior names: healthy_zone_has_no_problems, soa_uniqueness_and_apex, cname_exclusivity_address_conflict, cname_multiple_detected, apex_ns_missing_detected, duplicate_rr_detection, delegation_glue_requirement, severity_owner_type_sorting, read_only_records_input.
+
+Step 3 hidden/behavior names: direct_a_record_answer, cname_chain_answer_order, nxdomain_for_absent_owner, noerror_nodata_existing_owner, bounded_cname_loop_detection, unsupported_query_type_valueerror, answer_sorting_for_rrset, qname_case_canonicalization, read_only_records_input.
+
+Step 4 hidden/behavior names: soa_serial_increment_planned, ttl_normalization_all_records, digest_canonical_order_independent, already_normalized_without_soa_empty_changes, digests_are_read_only, negative_target_ttl_valueerror, migration_records_canonical_order, read_only_records_input.
+
+Step 5 hidden/behavior names: healthy_zone_audit_preserves_outputs, broken_zone_audit_still_answers_queries, recovery_fields_and_sha256_exact, canonical_report_ordering, step1_parser_regression, step2_validation_regression, step3_resolver_regression, step4_migration_regression, read_only_inputs_and_recovery_mapping.

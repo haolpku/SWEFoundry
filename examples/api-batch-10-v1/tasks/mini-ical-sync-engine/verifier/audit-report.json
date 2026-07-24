@@ -1,0 +1,149 @@
+{
+  "gates": [
+    {
+      "expected_release_pass": 0,
+      "extra": "",
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 1
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "",
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 2
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "",
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 3
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "",
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 4
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "",
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 5
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 1
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 2
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 3
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 4
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 5
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "fp1_ignores_folding.py",
+      "gate": "mutant_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 1
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "fp2_until_exclusive_only.py",
+      "gate": "mutant_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 2
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "fp3_resurrects_deleted_event.py",
+      "gate": "mutant_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 3
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "fp4_input_order_winner.py",
+      "gate": "mutant_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 4
+    },
+    {
+      "expected_release_pass": 0,
+      "extra": "fp5_expands_before_conflict_resolution.py",
+      "gate": "mutant_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "returncode_zero": false,
+      "step": 5
+    },
+    {
+      "expected_release_pass": 1,
+      "extra": "",
+      "gate": "sitecustomize_and_pythonpath_isolation",
+      "observed_release_pass": 1,
+      "passed": true,
+      "returncode_zero": true,
+      "step": 1
+    }
+  ],
+  "passed": true
+}

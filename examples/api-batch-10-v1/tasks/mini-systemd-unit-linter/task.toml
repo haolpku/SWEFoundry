@@ -1,0 +1,69 @@
+schema_version = "1.3"
+multi_step_reward_strategy = "final"
+artifacts = ["/app/workspace"]
+
+[task]
+name = "terminal-data-factory/mini-systemd-unit-linter"
+description = "Build Systemd Unit Dependency Linter and Boot Plan Simulator as an offline, deterministic Python system in five progressive implementation steps."
+authors = [{ name = "Terminal Data Factory Team" }]
+keywords = ["process supervision and service configuration", "greenfield", "multi-step"]
+
+[[steps]]
+name = "1-parse-unit-files-deterministically"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "2-validate-dependency-integrity"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "3-compute-boot-activation-order"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "4-replay-failure-recovery"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "5-integrated-unit-audit"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[metadata]
+difficulty = "uncalibrated-long-horizon-candidate"
+calibration_status = "target-agent-rollouts-required"
+language = "python"
+domain = "process supervision and service configuration"
+codebase_profile = "greenfield"
+trajectory_shape = "five-step-progressive-greenfield"
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 40000.0
+max_steps = 500
+
+[environment]
+build_timeout_sec = 300.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192
+gpus = 0
+allow_internet = false
+workdir = "/app/workspace"

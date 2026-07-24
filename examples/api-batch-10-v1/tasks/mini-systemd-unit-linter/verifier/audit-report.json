@@ -1,0 +1,158 @@
+{
+  "events": [
+    {
+      "expected_release_pass": 0,
+      "gate": "complete_oracle_mutant_release_pass_is_zero",
+      "mutant": "fp1_last_key_wins.py",
+      "mutant_applied": true,
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-1"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "complete_oracle_mutant_release_pass_is_zero",
+      "mutant": "fp2_requires_as_wants.py",
+      "mutant_applied": true,
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-2"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "complete_oracle_mutant_release_pass_is_zero",
+      "mutant": "fp3_ignores_before.py",
+      "mutant_applied": true,
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-3"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "complete_oracle_mutant_release_pass_is_zero",
+      "mutant": "fp4_wanted_failure_fatal.py",
+      "mutant_applied": true,
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-4"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "complete_oracle_mutant_release_pass_is_zero",
+      "mutant": "fp5_drops_validation_on_cycle.py",
+      "mutant_applied": true,
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-5"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "cumulative_oracle_release_pass_is_one",
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "solutions_applied": true,
+      "step": "step-1"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "cumulative_oracle_release_pass_is_one",
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "solutions_applied": true,
+      "step": "step-2"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "cumulative_oracle_release_pass_is_one",
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "solutions_applied": true,
+      "step": "step-3"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "cumulative_oracle_release_pass_is_one",
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "solutions_applied": true,
+      "step": "step-4"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "cumulative_oracle_release_pass_is_one",
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "solutions_applied": true,
+      "step": "step-5"
+    },
+    {
+      "expected_release_pass": 1,
+      "gate": "sitecustomize_and_pythonpath_isolation",
+      "oracle_applied": true,
+      "passed": true,
+      "release_pass": 1,
+      "returncode_zero": true,
+      "step": "step-5"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "starter_release_pass_is_zero",
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-1"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "starter_release_pass_is_zero",
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-2"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "starter_release_pass_is_zero",
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-3"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "starter_release_pass_is_zero",
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-4"
+    },
+    {
+      "expected_release_pass": 0,
+      "gate": "starter_release_pass_is_zero",
+      "passed": true,
+      "release_pass": 0,
+      "returncode_zero": true,
+      "step": "step-5"
+    }
+  ],
+  "passed": true,
+  "summary": {
+    "failed_gates": 0,
+    "total_gates": 16
+  }
+}

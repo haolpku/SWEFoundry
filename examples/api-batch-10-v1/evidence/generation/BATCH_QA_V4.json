@@ -1,0 +1,3501 @@
+{
+  "batch_name": "candidates",
+  "passed": true,
+  "schema_version": "1.0",
+  "task_count": 10,
+  "task_limit": 10,
+  "tasks": [
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "0c0ad4f91dd96911725bc009673bbe7305698201bb825a2fdbe2075880fad395",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "0c0ad4f91dd96911725bc009673bbe7305698201bb825a2fdbe2075880fad395",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "0c0ad4f91dd96911725bc009673bbe7305698201bb825a2fdbe2075880fad395"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 41,
+        "behavioral_checks_by_step": {
+          "1-parse-immutable-operations": 8,
+          "2-validate-causal-dag": 8,
+          "3-merge-notebook-text-deterministically": 8,
+          "4-compute-frontiers-and-compaction-plan": 8,
+          "5-integrated-notebook-recovery-and-migration": 9
+        },
+        "case_names_by_step": {
+          "1-parse-immutable-operations": [
+            "sorts_two_actor_inserts_by_actor_sequence",
+            "duplicate_actor_sequence_raises",
+            "newline_delimited_json_supported",
+            "object_wrapped_operations_supported",
+            "validates_actor_sequence_and_character_contract",
+            "normalizes_dependency_and_checkpoint_cover_order",
+            "delete_and_set_title_fields_are_normalized",
+            "read_only_state_check_operation_immutability"
+          ],
+          "2-validate-causal-dag": [
+            "missing_dependency_reported_with_stable_witness",
+            "checkpoint_missing_coverage_reported",
+            "actor_sequence_gap_reported",
+            "causal_cycle_witness_deterministic",
+            "problems_sorted_stably_by_dataclass_order",
+            "valid_dag_has_no_problems",
+            "parse_duplicate_regression_still_raises",
+            "read_only_state_check_validate_does_not_mutate_ops"
+          ],
+          "3-merge-notebook-text-deterministically": [
+            "concurrent_inserts_ordered_by_operation_identifier",
+            "concurrent_insert_result_independent_of_input_order",
+            "causal_after_chain_preserves_character_order",
+            "delete_removes_visible_character_and_keeps_tombstone",
+            "duplicate_deletes_are_idempotent",
+            "cells_sorted_by_identifier_and_titles_preserved",
+            "invalid_dag_rejected_before_merge",
+            "read_only_state_check_merge_does_not_mutate_ops"
+          ],
+          "4-compute-frontiers-and-compaction-plan": [
+            "stable_tombstone_compacted_when_all_peers_ack_delete",
+            "unseen_delete_keeps_tombstone_source_retained",
+            "peer_frontiers_are_sorted_and_preserved",
+            "checkpoint_candidate_requires_covered_operations_seen",
+            "no_peer_frontiers_uses_local_complete_closure",
+            "unknown_frontier_ids_are_ignored_safely",
+            "retained_operations_are_stable_sorted_identifiers",
+            "read_only_state_check_compaction_does_not_mutate_inputs"
+          ],
+          "5-integrated-notebook-recovery-and-migration": [
+            "journal_only_audit_runs_full_pipeline",
+            "snapshot_schema_migration_recovers_combined_state",
+            "invalid_journal_missing_dependency_blocks_visible_cells",
+            "duplicate_actor_sequence_regression_still_raises",
+            "causal_cycle_regression_reported_in_audit",
+            "deterministic_merge_regression_preserved_in_audit",
+            "compaction_regression_unseen_delete_retains_source",
+            "steps_one_to_four_public_regressions_remain_available",
+            "read_only_state_check_audit_does_not_mutate_frontiers"
+          ]
+        },
+        "declared_behavioral_checks": 41,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-immutable-operations"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-immutable-operations",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-immutable-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-causal-dag"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-validate-causal-dag",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-immutable-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-causal-dag"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-notebook-text-deterministically"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-merge-notebook-text-deterministically",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-immutable-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-causal-dag"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-notebook-text-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-compute-frontiers-and-compaction-plan"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-compute-frontiers-and-compaction-plan",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-immutable-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-causal-dag"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-notebook-text-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-compute-frontiers-and-compaction-plan"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-notebook-recovery-and-migration"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-notebook-recovery-and-migration",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "f6171ab988f8a43192d9c058fe6b363d020375d6ac6921e354d20080e4dc86a3",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-crdt-notebook-engine"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "7d54bdb7436ed6467ba991aca06bc11d6454b89d562a1166086aa23a91b0f208",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "7d54bdb7436ed6467ba991aca06bc11d6454b89d562a1166086aa23a91b0f208",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "7d54bdb7436ed6467ba991aca06bc11d6454b89d562a1166086aa23a91b0f208"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 43,
+        "behavioral_checks_by_step": {
+          "1-parse-zone-master-files": 8,
+          "2-validate-zone-integrity": 9,
+          "3-simulate-offline-dns-answers": 9,
+          "4-plan-serial-and-digest-migration": 8,
+          "5-integrated-zone-audit": 9
+        },
+        "case_names_by_step": {
+          "1-parse-zone-master-files": [
+            "origin_relative_names_case_canonicalization",
+            "default_ttl_and_owner_inheritance",
+            "txt_with_spaces_and_comments",
+            "soa_parentheses_numeric_and_names",
+            "malformed_directives_raise_valueerror",
+            "canonical_sorted_records",
+            "origin_directive_and_aaaa_normalization",
+            "read_only_state_no_input_change"
+          ],
+          "2-validate-zone-integrity": [
+            "healthy_zone_has_no_problems",
+            "soa_uniqueness_and_apex",
+            "cname_exclusivity_address_conflict",
+            "cname_multiple_detected",
+            "apex_ns_missing_detected",
+            "duplicate_rr_detection",
+            "delegation_glue_requirement",
+            "severity_owner_type_sorting",
+            "read_only_records_input"
+          ],
+          "3-simulate-offline-dns-answers": [
+            "direct_a_record_answer",
+            "cname_chain_answer_order",
+            "nxdomain_for_absent_owner",
+            "noerror_nodata_existing_owner",
+            "bounded_cname_loop_detection",
+            "unsupported_query_type_valueerror",
+            "answer_sorting_for_rrset",
+            "qname_case_canonicalization",
+            "read_only_records_input"
+          ],
+          "4-plan-serial-and-digest-migration": [
+            "soa_serial_increment_planned",
+            "ttl_normalization_all_records",
+            "digest_canonical_order_independent",
+            "already_normalized_without_soa_empty_changes",
+            "digests_are_read_only",
+            "negative_target_ttl_valueerror",
+            "migration_records_canonical_order",
+            "read_only_records_input"
+          ],
+          "5-integrated-zone-audit": [
+            "healthy_zone_audit_preserves_outputs",
+            "broken_zone_audit_still_answers_queries",
+            "recovery_fields_and_sha256_exact",
+            "canonical_report_ordering",
+            "step1_parser_regression",
+            "step2_validation_regression",
+            "step3_resolver_regression",
+            "step4_migration_regression",
+            "read_only_inputs_and_recovery_mapping"
+          ]
+        },
+        "declared_behavioral_checks": 43,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-zone-master-files"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-zone-master-files",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-zone-master-files"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-zone-integrity"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-validate-zone-integrity",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-zone-master-files"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-zone-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-simulate-offline-dns-answers"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-simulate-offline-dns-answers",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-zone-master-files"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-zone-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-simulate-offline-dns-answers"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-serial-and-digest-migration"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-plan-serial-and-digest-migration",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-zone-master-files"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-zone-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-simulate-offline-dns-answers"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-serial-and-digest-migration"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-zone-audit"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-zone-audit",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "db36d3021a2952e3b3ec4d2d963156096463a348bcb9b026ae4fdc0fadb70a8a",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-dns-zone-auditor"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "ce5c4a47c5b8001993b6275cb662dbac82d65182801645c5fb89384da5f35ed5",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "ce5c4a47c5b8001993b6275cb662dbac82d65182801645c5fb89384da5f35ed5",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "ce5c4a47c5b8001993b6275cb662dbac82d65182801645c5fb89384da5f35ed5"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 43,
+        "behavioral_checks_by_step": {
+          "1-canonicalize-requests-and-responses": 9,
+          "2-evaluate-freshness-and-stale-policy": 9,
+          "3-merge-conditional-304-responses": 8,
+          "4-apply-invalidation-rules": 8,
+          "5-integrated-cache-audit-and-recovery": 9
+        },
+        "case_names_by_step": {
+          "1-canonicalize-requests-and-responses": [
+            "host_case_normalized",
+            "query_order_canonical",
+            "vary_header_in_key",
+            "method_normalization_head",
+            "unsafe_method_rejected",
+            "no_store_rejected",
+            "vary_star_rejected",
+            "header_canonicalization_forms",
+            "read_only_inputs"
+          ],
+          "2-evaluate-freshness-and-stale-policy": [
+            "max_age_fresh",
+            "expired_response_stale",
+            "cache_control_over_expires",
+            "injected_clock_only",
+            "age_header_precedence",
+            "stale_if_error_window",
+            "unusable_policy_and_status",
+            "validators_reported",
+            "read_only_entry"
+          ],
+          "3-merge-conditional-304-responses": [
+            "etag_304_merge",
+            "mismatched_etag_raises",
+            "mismatched_last_modified_raises",
+            "hop_by_hop_not_merged",
+            "content_length_not_replaced",
+            "validator_preserved_when_absent",
+            "allowed_metadata_updated",
+            "read_only_entry_and_response"
+          ],
+          "4-apply-invalidation-rules": [
+            "post_invalidates_all_variants",
+            "purge_key_only",
+            "purge_uri_all_variants",
+            "no_store_not_retained",
+            "affected_keys_sorted",
+            "safe_get_noop",
+            "unaffected_uri_retained",
+            "read_only_entries_and_event"
+          ],
+          "5-integrated-cache-audit-and-recovery": [
+            "fresh_cache_audit",
+            "truncated_snapshot_recovery",
+            "snapshot_migration_canonical_metadata",
+            "duplicate_snapshot_record_recovery",
+            "regression_step1_vary_key",
+            "regression_step2_max_age_precedence",
+            "regression_step3_merge_preserves_body",
+            "regression_step4_invalidate_variants",
+            "read_only_snapshot_and_events"
+          ]
+        },
+        "declared_behavioral_checks": 43,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-canonicalize-requests-and-responses"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_01_smoke ok\n"
+            },
+            "step": "1-canonicalize-requests-and-responses",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-canonicalize-requests-and-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-evaluate-freshness-and-stale-policy"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_02_smoke ok\n"
+            },
+            "step": "2-evaluate-freshness-and-stale-policy",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-canonicalize-requests-and-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-evaluate-freshness-and-stale-policy"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-conditional-304-responses"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_03_smoke ok\n"
+            },
+            "step": "3-merge-conditional-304-responses",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-canonicalize-requests-and-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-evaluate-freshness-and-stale-policy"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-conditional-304-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-apply-invalidation-rules"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_04_smoke ok\n"
+            },
+            "step": "4-apply-invalidation-rules",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-canonicalize-requests-and-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-evaluate-freshness-and-stale-policy"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-merge-conditional-304-responses"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-apply-invalidation-rules"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-cache-audit-and-recovery"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_05_smoke ok\n"
+            },
+            "step": "5-integrated-cache-audit-and-recovery",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "fd2114280e4e5aebb124b46e3e38cb86ca640ba602bb8e310fe9a4bc62eb6285",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-http-cache-engine"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "aa1a8685c798e1aa881a391b8e8347f3fcb4ffd2ac7c271f08d47330d6e33702",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "aa1a8685c798e1aa881a391b8e8347f3fcb4ffd2ac7c271f08d47330d6e33702",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "aa1a8685c798e1aa881a391b8e8347f3fcb4ffd2ac7c271f08d47330d6e33702"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 41,
+        "behavioral_checks_by_step": {
+          "1-parse-icalendar-components": 8,
+          "2-expand-bounded-recurrences": 8,
+          "3-apply-incremental-sync-changes": 8,
+          "4-resolve-sync-conflicts": 8,
+          "5-integrated-calendar-sync-recovery": 9
+        },
+        "case_names_by_step": {
+          "1-parse-icalendar-components": [
+            "folded_summary_parses",
+            "missing_uid_raises",
+            "parameter_parsing_preserves_values",
+            "canonical_uid_and_recurrence_ordering",
+            "rrule_sequence_status_fields",
+            "exdate_values_are_canonical_and_sorted",
+            "unterminated_event_raises",
+            "read_only_state_event_records"
+          ],
+          "2-expand-bounded-recurrences": [
+            "daily_count_expanded",
+            "until_is_inclusive",
+            "weekly_interval_handled",
+            "exdate_removes_occurrence",
+            "window_start_inclusive_end_exclusive",
+            "cancelled_event_skipped",
+            "unsupported_frequency_raises",
+            "read_only_state_inputs_unmodified"
+          ],
+          "3-apply-incremental-sync-changes": [
+            "higher_sequence_update_wins",
+            "older_update_is_ignored",
+            "delete_tombstone_hides_event",
+            "newer_tombstone_prevents_older_update",
+            "change_ordering_independence",
+            "recurrence_instance_isolated",
+            "sorted_by_uid_output",
+            "read_only_state_inputs_unmodified"
+          ],
+          "4-resolve-sync-conflicts": [
+            "sequence_breaks_conflict",
+            "updated_breaks_equal_sequence",
+            "tombstone_wins_on_newer_update",
+            "tie_break_deterministic_not_input_order",
+            "uid_recurrence_grouping",
+            "stable_reason_contains_fields",
+            "no_decision_for_singleton",
+            "read_only_state_candidates_unmodified"
+          ],
+          "5-integrated-calendar-sync-recovery": [
+            "text_snapshot_migrates_with_warning",
+            "json_v1_snapshot_migrates_and_sorts",
+            "conflict_resolution_precedes_expansion",
+            "tombstone_compaction_removes_occurrences",
+            "regression_step1_folded_parse",
+            "regression_step2_until_inclusive",
+            "regression_step3_tombstone_precedence",
+            "regression_step4_tie_break",
+            "read_only_state_audit_report_records"
+          ]
+        },
+        "declared_behavioral_checks": 41,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-icalendar-components"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-icalendar-components",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-icalendar-components"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-expand-bounded-recurrences"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-expand-bounded-recurrences",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-icalendar-components"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-expand-bounded-recurrences"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-apply-incremental-sync-changes"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-apply-incremental-sync-changes",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-icalendar-components"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-expand-bounded-recurrences"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-apply-incremental-sync-changes"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-resolve-sync-conflicts"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-resolve-sync-conflicts",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-icalendar-components"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-expand-bounded-recurrences"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-apply-incremental-sync-changes"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-resolve-sync-conflicts"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-calendar-sync-recovery"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-calendar-sync-recovery",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "1a5afa376b73593c7e08a29fe1fac336f6cd270e8b8805fd3193083563312507",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-ical-sync-engine"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "2068f587505a7d9d8f2a9e47a616cbd7a232af4c6289ba73635fd2504f492b21",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "2068f587505a7d9d8f2a9e47a616cbd7a232af4c6289ba73635fd2504f492b21",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "2068f587505a7d9d8f2a9e47a616cbd7a232af4c6289ba73635fd2504f492b21"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 42,
+        "behavioral_checks_by_step": {
+          "1-parse-broker-events": 8,
+          "2-match-wildcard-subscriptions": 9,
+          "3-replay-qos-and-retained-state": 8,
+          "4-plan-session-migration": 8,
+          "5-integrated-broker-replay-recovery": 9
+        },
+        "case_names_by_step": {
+          "1-parse-broker-events": [
+            "sorted_by_explicit_sequence",
+            "duplicate_sequence_rejected",
+            "invalid_client_identifier_rejected",
+            "publish_topic_wildcard_rejected",
+            "malformed_subscribe_filter_rejected",
+            "empty_topic_level_rejected",
+            "action_and_alias_fields_preserved",
+            "read_only_event_state_check"
+          ],
+          "2-match-wildcard-subscriptions": [
+            "exact_filter_match",
+            "single_level_wildcard_match",
+            "terminal_hash_wildcard_match",
+            "hash_not_partial_topic_level",
+            "hash_must_be_terminal",
+            "plus_whole_level_only",
+            "lexical_identifier_order",
+            "invalid_topic_wildcard_rejected",
+            "read_only_subscription_state_check"
+          ],
+          "3-replay-qos-and-retained-state": [
+            "qos1_awaits_ack",
+            "qos1_ack_changes_status",
+            "qos1_duplicate_offline_suppression",
+            "qos0_immediate_delivery",
+            "retained_message_delivered_on_subscribe",
+            "retained_delete_tombstone",
+            "durable_offline_queue_replayed_on_connect",
+            "read_only_broker_state_check"
+          ],
+          "4-plan-session-migration": [
+            "unsupported_qos_advice",
+            "explicit_expire_stale_session",
+            "no_live_time_expiry_without_expire",
+            "retained_tombstone_advice",
+            "compaction_advice_for_acked_qos1",
+            "advice_deduplicated",
+            "stable_advice_ordering",
+            "read_only_planning_state_check"
+          ],
+          "5-integrated-broker-replay-recovery": [
+            "fresh_journal_audit_counts",
+            "snapshot_journal_recovery_retains_messages",
+            "journal_replay_idempotent_ordering",
+            "parse_regression_sequence_sort_and_validation",
+            "match_regression_wildcard_integrated",
+            "replay_regression_qos_ack",
+            "migration_regression_advice",
+            "critical_duplicate_sequence_rejected_across_snapshot_journal",
+            "read_only_audit_report_state_check"
+          ]
+        },
+        "declared_behavioral_checks": 42,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-broker-events"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_01_smoke ok\n"
+            },
+            "step": "1-parse-broker-events",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-broker-events"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-match-wildcard-subscriptions"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_02_smoke ok\n"
+            },
+            "step": "2-match-wildcard-subscriptions",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-broker-events"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-match-wildcard-subscriptions"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-replay-qos-and-retained-state"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_03_smoke ok\n"
+            },
+            "step": "3-replay-qos-and-retained-state",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-broker-events"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-match-wildcard-subscriptions"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-replay-qos-and-retained-state"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-session-migration"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_04_smoke ok\n"
+            },
+            "step": "4-plan-session-migration",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-broker-events"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-match-wildcard-subscriptions"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-replay-qos-and-retained-state"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-session-migration"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-broker-replay-recovery"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": "step_05_smoke ok\n"
+            },
+            "step": "5-integrated-broker-replay-recovery",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "75db5b902ac4cf163fa4e3b30975c5b2fe255d5d4ebfb91786c5b8d17e1652c8",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-mqtt-session-broker"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "b493dda09af8577d9aa21dd731d8d4ae5380459c2cc631a04c5f2551b6a084d6",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "b493dda09af8577d9aa21dd731d8d4ae5380459c2cc631a04c5f2551b6a084d6",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "b493dda09af8577d9aa21dd731d8d4ae5380459c2cc631a04c5f2551b6a084d6"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 41,
+        "behavioral_checks_by_step": {
+          "1-parse-classic-pcap-records": 8,
+          "2-decode-ethernet-ipv4-tcp": 8,
+          "3-reassemble-tcp-streams": 8,
+          "4-emit-deterministic-timeout-events": 8,
+          "5-integrated-pcap-audit-recovery": 9
+        },
+        "case_names_by_step": {
+          "1-parse-classic-pcap-records": [
+            "little_endian_single_packet_public",
+            "big_endian_declared_magic_hidden_endianness_decoding",
+            "truncated_record_header_raises_valueerror_public",
+            "captured_length_exceeds_snaplen_hidden_bounds",
+            "captured_length_exceeds_original_hidden_bounds",
+            "timestamp_microseconds_range_hidden_data_field",
+            "record_ordering_indices_hidden_record_ordering",
+            "read_only_state_repeated_parse_no_mutation"
+          ],
+          "2-decode-ethernet-ipv4-tcp": [
+            "ipv4_tcp_segment_public",
+            "udp_frame_ignored_public",
+            "non_ipv4_ethernet_ignored",
+            "ipv4_options_header_length_hidden",
+            "tcp_options_data_offset_hidden",
+            "fragmented_ipv4_ignored_protocol_validation",
+            "packet_index_ordering_hidden",
+            "read_only_state_packets_no_mutation"
+          ],
+          "3-reassemble-tcp-streams": [
+            "out_of_order_reassembled_public_sequence_order",
+            "retransmission_deduplicated_public",
+            "overlap_resolution_first_byte_wins_hidden",
+            "syn_sequence_base_normalization_hidden",
+            "canonical_flow_key_sorting_hidden",
+            "fin_sets_closed_state_hidden",
+            "gap_summary_hidden_overlap_resolution",
+            "read_only_state_segments_no_mutation"
+          ],
+          "4-emit-deterministic-timeout-events": [
+            "idle_flow_timeout_public",
+            "closed_flow_no_timeout_public_fin",
+            "rst_closed_flow_no_timeout_hidden",
+            "all_open_flows_reported_hidden_not_last_only",
+            "explicit_timestamp_arithmetic_hidden_no_live_time",
+            "stable_event_ordering_hidden",
+            "negative_idle_seconds_raises",
+            "read_only_state_segments_no_mutation"
+          ],
+          "5-integrated-pcap-audit-recovery": [
+            "complete_stream_audit_public_integrated",
+            "truncated_capture_recovery_public_preserves_partial_stream",
+            "checkpoint_replay_migration_hidden",
+            "step1_big_endian_regression_hidden",
+            "step2_ipv4_options_regression_hidden",
+            "step3_out_of_order_regression_hidden",
+            "step4_all_open_flows_timeout_regression_hidden",
+            "invalid_checkpoint_raises_checkpoint_error_hidden",
+            "read_only_state_integrated_audit_no_mutation"
+          ]
+        },
+        "declared_behavioral_checks": 41,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-classic-pcap-records"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-classic-pcap-records",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-classic-pcap-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-ethernet-ipv4-tcp"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-decode-ethernet-ipv4-tcp",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-classic-pcap-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-ethernet-ipv4-tcp"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-reassemble-tcp-streams"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-reassemble-tcp-streams",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-classic-pcap-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-ethernet-ipv4-tcp"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-reassemble-tcp-streams"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-emit-deterministic-timeout-events"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-emit-deterministic-timeout-events",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-classic-pcap-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-ethernet-ipv4-tcp"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-reassemble-tcp-streams"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-emit-deterministic-timeout-events"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-pcap-audit-recovery"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-pcap-audit-recovery",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "bd97172220363d183503522b47cdd2aca9fa259b6685a995ea1cbe83b1378a65",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-pcap-stream-reassembler"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "c13f430bb8e205950576704a56b4dbcc89fb7e6c9d9478a639951cd9e48263a3",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "c13f430bb8e205950576704a56b4dbcc89fb7e6c9d9478a639951cd9e48263a3",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "c13f430bb8e205950576704a56b4dbcc89fb7e6c9d9478a639951cd9e48263a3"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 43,
+        "behavioral_checks_by_step": {
+          "1-parse-png-chunks": 8,
+          "2-verify-crc-and-chunk-invariants": 8,
+          "3-extract-deterministic-asset-metadata": 9,
+          "4-plan-deterministic-png-cleanup": 9,
+          "5-integrated-png-audit": 9
+        },
+        "case_names_by_step": {
+          "1-parse-png-chunks": [
+            "parse_minimal_png_in_file_order",
+            "bad_signature_raises_valueerror",
+            "truncated_chunk_header_raises",
+            "declared_length_past_buffer_is_truncated",
+            "missing_iend_raises",
+            "trailing_bytes_after_iend_raises",
+            "non_letter_chunk_type_rejected",
+            "read_only_state_check"
+          ],
+          "2-verify-crc-and-chunk-invariants": [
+            "ancillary_crc_mismatch_reported",
+            "critical_crc_mismatch_reported",
+            "idat_before_ihdr_reported",
+            "singleton_chunk_violations_reported",
+            "plte_after_idat_reported",
+            "nonconsecutive_idat_reported",
+            "problems_sorted_by_offset_and_code",
+            "read_only_state_check"
+          ],
+          "3-extract-deterministic-asset-metadata": [
+            "ihdr_dimensions_extracted",
+            "text_metadata_keys_are_canonical",
+            "duplicate_text_uses_canonical_first_value",
+            "ztxt_invalid_compression_method_rejected",
+            "ztxt_payload_not_inflated_or_decoded",
+            "itxt_invalid_compression_method_rejected",
+            "invalid_ihdr_compression_rejected",
+            "idat_bytes_are_ignored_by_metadata",
+            "read_only_state_check"
+          ],
+          "4-plan-deterministic-png-cleanup": [
+            "duplicate_text_removal_planned",
+            "clean_png_empty_plan",
+            "corrupt_ancillary_crc_repair_planned",
+            "corrupt_critical_chunk_not_removed",
+            "unsafe_unknown_ancillary_removed",
+            "grayscale_palette_removal_planned",
+            "bad_palette_length_normalized",
+            "plan_is_idempotent_and_sorted",
+            "read_only_state_check"
+          ],
+          "5-integrated-png-audit": [
+            "valid_audit_preserves_all_outputs",
+            "corrupt_ancillary_integrates_crc_and_cleanup",
+            "truncated_write_recovery_guidance",
+            "metadata_error_becomes_problem_not_exception",
+            "step1_regression_trailing_iend_rejected",
+            "step2_regression_idat_before_ihdr_reported",
+            "step3_regression_canonical_metadata_order",
+            "step4_regression_critical_crc_cannot_remove",
+            "read_only_state_check"
+          ]
+        },
+        "declared_behavioral_checks": 43,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-png-chunks"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-png-chunks",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-png-chunks"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-verify-crc-and-chunk-invariants"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-verify-crc-and-chunk-invariants",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-png-chunks"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-verify-crc-and-chunk-invariants"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-extract-deterministic-asset-metadata"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-extract-deterministic-asset-metadata",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-png-chunks"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-verify-crc-and-chunk-invariants"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-extract-deterministic-asset-metadata"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-deterministic-png-cleanup"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-plan-deterministic-png-cleanup",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-png-chunks"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-verify-crc-and-chunk-invariants"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-extract-deterministic-asset-metadata"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-deterministic-png-cleanup"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-png-audit"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-png-audit",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "e4f5a384f79a83439193db275db6cb06351712869af940c749b8748f43635415",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-png-asset-pipeline"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "a33ae62c8c06a68f2fcb4f0f5489634632fdf04f1baf062ea48429481009adfb",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "a33ae62c8c06a68f2fcb4f0f5489634632fdf04f1baf062ea48429481009adfb",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "a33ae62c8c06a68f2fcb4f0f5489634632fdf04f1baf062ea48429481009adfb"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 36,
+        "behavioral_checks_by_step": {
+          "1-validate-deployment-manifest": 7,
+          "2-plan-atomic-install-operations": 7,
+          "3-write-and-replay-intent-records": 7,
+          "4-plan-rollback-from-manifest": 7,
+          "5-integrated-safe-install-audit": 8
+        },
+        "case_names_by_step": {
+          "1-validate-deployment-manifest": [
+            "valid_two_file_manifest_sorted_and_normalized",
+            "parent_traversal_rejected",
+            "duplicate_normalized_destination_rejected",
+            "absolute_destination_rejected",
+            "sha256_lowercase_length_validation",
+            "manifest_object_files_and_relative_sources",
+            "read_only_state_check"
+          ],
+          "2-plan-atomic-install-operations": [
+            "new_file_copy_plan_fields",
+            "unchanged_file_noop_by_digest",
+            "source_digest_mismatch_rejected",
+            "changed_same_size_file_requires_operation",
+            "replaced_file_backup_path_contains_previous_digest",
+            "directory_creation_ordering_nested",
+            "read_only_state_check"
+          ],
+          "3-write-and-replay-intent-records": [
+            "write_intent_log_deterministic_schema_sorted",
+            "replay_completes_pending_copy_new_file",
+            "second_replay_is_idempotent",
+            "replay_replaced_file_creates_valid_backup",
+            "impossible_missing_destination_needing_backup_raises",
+            "source_digest_mismatch_raises_recovery_error",
+            "read_only_completed_replay_state_check"
+          ],
+          "4-plan-rollback-from-manifest": [
+            "rollback_restores_replaced_file_action_after_replay",
+            "rollback_new_file_delete_action",
+            "missing_backup_reported",
+            "corrupted_backup_digest_mismatch_reported",
+            "rollback_reverse_operation_order",
+            "invalid_log_raises_recovery_error",
+            "read_only_state_check"
+          ],
+          "5-integrated-safe-install-audit": [
+            "clean_install_audit_returns_plan_without_recovery",
+            "partial_install_recovery_before_fresh_plan",
+            "regression_step1_traversal_rejected",
+            "regression_step2_same_size_changed_requires_plan",
+            "regression_step3_second_replay_idempotent",
+            "regression_step4_corrupt_backup_error",
+            "rollback_after_recovery_has_restore_action",
+            "read_only_without_log_does_not_modify_root"
+          ]
+        },
+        "declared_behavioral_checks": 36,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-validate-deployment-manifest"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-validate-deployment-manifest",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-validate-deployment-manifest"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-plan-atomic-install-operations"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-plan-atomic-install-operations",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-validate-deployment-manifest"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-plan-atomic-install-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-write-and-replay-intent-records"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-write-and-replay-intent-records",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-validate-deployment-manifest"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-plan-atomic-install-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-write-and-replay-intent-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-rollback-from-manifest"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-plan-rollback-from-manifest",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-validate-deployment-manifest"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-plan-atomic-install-operations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-write-and-replay-intent-records"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-plan-rollback-from-manifest"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-safe-install-audit"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-safe-install-audit",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "80559eeb4bbd51a1432358a9d9fa57a8e86c3a936f19a7d6d4d0324c5fd908b6",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-posix-manifest-installer"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "268be3deef75d9c373edf431f571c9e227e2426566c2711881392e4f6ed24879",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "268be3deef75d9c373edf431f571c9e227e2426566c2711881392e4f6ed24879",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "268be3deef75d9c373edf431f571c9e227e2426566c2711881392e4f6ed24879"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 38,
+        "behavioral_checks_by_step": {
+          "1-parse-unit-files-deterministically": 7,
+          "2-validate-dependency-integrity": 7,
+          "3-compute-boot-activation-order": 8,
+          "4-replay-failure-recovery": 8,
+          "5-integrated-unit-audit": 8
+        },
+        "case_names_by_step": {
+          "1-parse-unit-files-deterministically": [
+            "canonical_unit_names_sorted",
+            "comment_handling_and_section_semantics",
+            "duplicate_scalar_key_rejected",
+            "malformed_section_header_rejected",
+            "duplicate_normalized_unit_name_rejected",
+            "file_path_input_supported",
+            "read_only_state_check"
+          ],
+          "2-validate-dependency-integrity": [
+            "requires_missing_is_error",
+            "wants_missing_is_warning",
+            "edge_type_severity_and_problem_ordering",
+            "root_confinement_loaded_units_only",
+            "known_dependencies_are_silent",
+            "duplicate_parse_regression",
+            "read_only_state_check"
+          ],
+          "3-compute-boot-activation-order": [
+            "simple_after_order",
+            "before_order_is_honored",
+            "requires_closure_includes_requirements",
+            "wants_closure_includes_wants",
+            "conflict_exclusion_raises",
+            "cycle_raises_with_sorted_witness",
+            "deterministic_lexical_order",
+            "read_only_state_check"
+          ],
+          "4-replay-failure-recovery": [
+            "required_failure_skips_dependent",
+            "wanted_failure_continues",
+            "restart_on_failure_with_burst_recovers",
+            "restart_limit_one_fails",
+            "unknown_plan_entry_is_skipped",
+            "canonical_set_output_sorted",
+            "required_skip_propagates_transitively",
+            "read_only_state_check"
+          ],
+          "5-integrated-unit-audit": [
+            "healthy_boot_audit_recovery_summary",
+            "cycle_keeps_validation_problems",
+            "duplicate_load_error_mapped",
+            "requires_validation_regression",
+            "before_planning_regression",
+            "wanted_failure_replay_regression",
+            "deterministic_units_and_recovery_sorted",
+            "read_only_state_check"
+          ]
+        },
+        "declared_behavioral_checks": 38,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-unit-files-deterministically"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-parse-unit-files-deterministically",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-unit-files-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-dependency-integrity"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-validate-dependency-integrity",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-unit-files-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-dependency-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-compute-boot-activation-order"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-compute-boot-activation-order",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-unit-files-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-dependency-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-compute-boot-activation-order"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-replay-failure-recovery"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-replay-failure-recovery",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-parse-unit-files-deterministically"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-validate-dependency-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-compute-boot-activation-order"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-replay-failure-recovery"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-unit-audit"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-unit-audit",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "480011c4a17c2ddf79b2261530e7c6b84a98dbbf3364fa99292ab9f41e26db9d",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-systemd-unit-linter"
+    },
+    {
+      "audit": {
+        "deterministic": true,
+        "passed": true,
+        "repeats": 2,
+        "runs": [
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "e17d92d2bd10f747fe668d93489c61787c0eb4807b3cd81f88b70bdd3916f61b",
+            "returncode": 0,
+            "run": 1
+          },
+          {
+            "error": null,
+            "report_passed": true,
+            "report_present": true,
+            "report_sha256": "e17d92d2bd10f747fe668d93489c61787c0eb4807b3cd81f88b70bdd3916f61b",
+            "returncode": 0,
+            "run": 2
+          }
+        ],
+        "unique_report_hashes": [
+          "e17d92d2bd10f747fe668d93489c61787c0eb4807b3cd81f88b70bdd3916f61b"
+        ]
+      },
+      "independent_inventory": {
+        "behavioral_checks": 41,
+        "behavioral_checks_by_step": {
+          "1-read-wasm-binary-sections": 8,
+          "2-decode-type-import-and-export-metadata": 8,
+          "3-validate-structural-integrity": 8,
+          "4-report-compatibility-migrations": 8,
+          "5-integrated-wasm-audit": 9
+        },
+        "case_names_by_step": {
+          "1-read-wasm-binary-sections": [
+            "empty_module_parses",
+            "bad_magic_raises",
+            "truncated_header_raises",
+            "ordered_section_offsets_and_names",
+            "truncated_section_payload_raises",
+            "truncated_leb_length_raises",
+            "leb_u32_overflow_raises",
+            "read_only_state_check"
+          ],
+          "2-decode-type-import-and-export-metadata": [
+            "exported_function_summary",
+            "invalid_utf8_import_name_raises",
+            "separate_index_spaces_for_imports",
+            "defined_function_index_after_import",
+            "deterministic_symbol_order",
+            "export_memory_kind_descriptor",
+            "trailing_export_bytes_raise",
+            "read_only_state_check"
+          ],
+          "3-validate-structural-integrity": [
+            "duplicate_type_section_reported",
+            "export_index_out_of_bounds_reported",
+            "custom_sections_do_not_break_order",
+            "core_out_of_order_reported",
+            "function_code_count_mismatch_reported",
+            "deterministic_problem_sorting",
+            "malformed_import_reported_not_raised",
+            "read_only_state_check"
+          ],
+          "4-report-compatibility-migrations": [
+            "unknown_custom_section_advice",
+            "canonical_name_section_advice",
+            "unsupported_start_feature_advice",
+            "deprecated_export_name_advice",
+            "deduplicates_equivalent_advice",
+            "stable_advice_ordering",
+            "malformed_custom_recovery_advice",
+            "read_only_state_check"
+          ],
+          "5-integrated-wasm-audit": [
+            "valid_module_audit",
+            "malformed_parse_recovered_as_problem",
+            "invalid_structure_suppresses_symbols",
+            "malformed_export_recovery_no_crash",
+            "report_and_sections_are_read_only",
+            "preserves_migration_advice",
+            "regresses_step2_index_spaces",
+            "regresses_step3_custom_order",
+            "deterministic_repeat_audit"
+          ]
+        },
+        "declared_behavioral_checks": 41,
+        "errors": [],
+        "mutant_steps": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mutants": 5,
+        "passed": true,
+        "public_smokes": 5
+      },
+      "passed": true,
+      "progressive_oracle": {
+        "passed": true,
+        "steps": [
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-read-wasm-binary-sections"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 1,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "1-read-wasm-binary-sections",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-read-wasm-binary-sections"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-type-import-and-export-metadata"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 2,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "2-decode-type-import-and-export-metadata",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-read-wasm-binary-sections"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-type-import-and-export-metadata"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-validate-structural-integrity"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 3,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "3-validate-structural-integrity",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-read-wasm-binary-sections"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-type-import-and-export-metadata"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-validate-structural-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-report-compatibility-migrations"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 4,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "4-report-compatibility-migrations",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          },
+          {
+            "installs": [
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "1-read-wasm-binary-sections"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "2-decode-type-import-and-export-metadata"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "3-validate-structural-integrity"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "4-report-compatibility-migrations"
+              },
+              {
+                "returncode": 0,
+                "stderr_tail": "",
+                "stdout_tail": "",
+                "step": "5-integrated-wasm-audit"
+              }
+            ],
+            "metrics": {
+              "code_quality": 1.0,
+              "correctness": 1.0,
+              "efficiency": 1.0,
+              "reasoning": 1.0,
+              "release_pass": 1,
+              "weighted_total": 1.0
+            },
+            "passed": true,
+            "position": 5,
+            "public_smoke": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "step": "5-integrated-wasm-audit",
+            "verifier": {
+              "returncode": 0,
+              "stderr_tail": "",
+              "stdout_tail": ""
+            }
+          }
+        ],
+        "steps_passed": 5
+      },
+      "scan": {
+        "counts": {
+          "absolute_paths": 0,
+          "endpoints": 0,
+          "python_bytecode": 0,
+          "secrets": 0
+        },
+        "findings": {
+          "absolute_paths": [],
+          "endpoints": [],
+          "python_bytecode": [],
+          "secrets": []
+        },
+        "passed": true
+      },
+      "source_sha256": "29a2a018e1fed6b4fd845ef4ee4bde86f00d293c61e64156851f4a8003cf826a",
+      "source_unchanged": true,
+      "static_validation": {
+        "errors": [],
+        "passed": true,
+        "warnings": []
+      },
+      "task_id": "mini-wasm-module-auditor"
+    }
+  ],
+  "totals": {
+    "audit_passed": 10,
+    "behavioral_checks_confirmed": 409,
+    "clean_scans": 10,
+    "deterministic_audits": 10,
+    "independent_inventory_passed": 10,
+    "mutants_confirmed": 50,
+    "progressive_oracle_passed": 10,
+    "progressive_oracle_steps_passed": 50,
+    "public_smokes_confirmed": 50,
+    "sources_unchanged": 10,
+    "static_passed": 10
+  }
+}

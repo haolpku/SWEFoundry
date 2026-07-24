@@ -1,0 +1,28 @@
+{
+  "changes": [
+    "linked public contract in steps/1-parse-broker-events/instruction.md",
+    "isolated verifier process in steps/1-parse-broker-events/tests/test.sh",
+    "linked public contract in steps/2-match-wildcard-subscriptions/instruction.md",
+    "isolated verifier process in steps/2-match-wildcard-subscriptions/tests/test.sh",
+    "linked public contract in steps/3-replay-qos-and-retained-state/instruction.md",
+    "isolated verifier process in steps/3-replay-qos-and-retained-state/tests/test.sh",
+    "linked public contract in steps/4-plan-session-migration/instruction.md",
+    "isolated verifier process in steps/4-plan-session-migration/tests/test.sh",
+    "linked public contract in steps/5-integrated-broker-replay-recovery/instruction.md",
+    "isolated verifier process in steps/5-integrated-broker-replay-recovery/tests/test.sh",
+    "moved verifier/mutants/fp1_input_order_events.py to verifier/anti_cheat/fp1_input_order_events.py",
+    "moved verifier/mutants/fp2_hash_matches_partial_level.py to verifier/anti_cheat/fp2_hash_matches_partial_level.py",
+    "moved verifier/mutants/fp3_qos1_as_qos0.py to verifier/anti_cheat/fp3_qos1_as_qos0.py",
+    "moved verifier/mutants/fp4_uses_live_expiry.py to verifier/anti_cheat/fp4_uses_live_expiry.py",
+    "moved verifier/mutants/fp5_drops_retained_after_recovery.py to verifier/anti_cheat/fp5_drops_retained_after_recovery.py",
+    "updated audit mutant directory"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_input_order_events.py",
+    "verifier/anti_cheat/fp2_hash_matches_partial_level.py",
+    "verifier/anti_cheat/fp3_qos1_as_qos0.py",
+    "verifier/anti_cheat/fp4_uses_live_expiry.py",
+    "verifier/anti_cheat/fp5_drops_retained_after_recovery.py"
+  ],
+  "task_id": "mini-mqtt-session-broker"
+}

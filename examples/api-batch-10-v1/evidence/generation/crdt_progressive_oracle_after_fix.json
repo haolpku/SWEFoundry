@@ -1,0 +1,221 @@
+{
+  "passed": true,
+  "steps": [
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 1,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "1-parse-immutable-operations",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 2,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "2-validate-causal-dag",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 3,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "3-merge-notebook-text-deterministically",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "4-compute-frontiers-and-compaction-plan"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 4,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "4-compute-frontiers-and-compaction-plan",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    },
+    {
+      "installs": [
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "1-parse-immutable-operations"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "2-validate-causal-dag"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "3-merge-notebook-text-deterministically"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "4-compute-frontiers-and-compaction-plan"
+        },
+        {
+          "returncode": 0,
+          "stderr_tail": "",
+          "stdout_tail": "",
+          "step": "5-integrated-notebook-recovery-and-migration"
+        }
+      ],
+      "metrics": {
+        "code_quality": 1.0,
+        "correctness": 1.0,
+        "efficiency": 1.0,
+        "reasoning": 1.0,
+        "release_pass": 1,
+        "weighted_total": 1.0
+      },
+      "passed": true,
+      "position": 5,
+      "public_smoke": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      },
+      "step": "5-integrated-notebook-recovery-and-migration",
+      "verifier": {
+        "returncode": 0,
+        "stderr_tail": "",
+        "stdout_tail": ""
+      }
+    }
+  ],
+  "steps_passed": 5
+}

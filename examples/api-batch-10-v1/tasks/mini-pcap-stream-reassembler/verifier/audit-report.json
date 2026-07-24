@@ -1,0 +1,105 @@
+{
+  "gates": [
+    {
+      "gate": "mutant_release_pass_zero",
+      "mutant": "fp1_native_endian_only.py",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-1"
+    },
+    {
+      "gate": "mutant_release_pass_zero",
+      "mutant": "fp2_ignores_ip_header_length.py",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-2"
+    },
+    {
+      "gate": "mutant_release_pass_zero",
+      "mutant": "fp3_append_arrival_order.py",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-3"
+    },
+    {
+      "gate": "mutant_release_pass_zero",
+      "mutant": "fp4_timeout_open_only_last.py",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-4"
+    },
+    {
+      "gate": "mutant_release_pass_zero",
+      "mutant": "fp5_drops_partial_flow_on_truncation.py",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-5"
+    },
+    {
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "step": "step-1"
+    },
+    {
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "step": "step-2"
+    },
+    {
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "step": "step-3"
+    },
+    {
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "step": "step-4"
+    },
+    {
+      "gate": "oracle_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true,
+      "step": "step-5"
+    },
+    {
+      "gate": "sitecustomize_and_pythonpath_isolation",
+      "passed": true
+    },
+    {
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-1"
+    },
+    {
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-2"
+    },
+    {
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-3"
+    },
+    {
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-4"
+    },
+    {
+      "gate": "starter_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-5"
+    }
+  ],
+  "passed": true,
+  "task_id": "mini-pcap-stream-reassembler"
+}

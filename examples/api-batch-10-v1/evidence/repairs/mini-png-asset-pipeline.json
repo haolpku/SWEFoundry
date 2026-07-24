@@ -1,0 +1,23 @@
+{
+  "changes": [
+    "moved verifier/fp1_ignores_trailing_truncation.py to verifier/anti_cheat/fp1_ignores_trailing_truncation.py",
+    "moved verifier/fp2_skips_ancillary_crc.py to verifier/anti_cheat/fp2_skips_ancillary_crc.py",
+    "moved verifier/fp3_input_order_text.py to verifier/anti_cheat/fp3_input_order_text.py",
+    "moved verifier/fp4_repairs_critical_by_drop.py to verifier/anti_cheat/fp4_repairs_critical_by_drop.py",
+    "moved verifier/fp5_metadata_only_audit.py to verifier/anti_cheat/fp5_metadata_only_audit.py",
+    "updated audit mutant directory",
+    "declared step-1 checks in steps/1-parse-png-chunks/tests/verifier.py",
+    "declared step-2 checks in steps/2-verify-crc-and-chunk-invariants/tests/verifier.py",
+    "declared step-3 checks in steps/3-extract-deterministic-asset-metadata/tests/verifier.py",
+    "declared step-4 checks in steps/4-plan-deterministic-png-cleanup/tests/verifier.py",
+    "declared step-5 checks in steps/5-integrated-png-audit/tests/verifier.py"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_ignores_trailing_truncation.py",
+    "verifier/anti_cheat/fp2_skips_ancillary_crc.py",
+    "verifier/anti_cheat/fp3_input_order_text.py",
+    "verifier/anti_cheat/fp4_repairs_critical_by_drop.py",
+    "verifier/anti_cheat/fp5_metadata_only_audit.py"
+  ],
+  "task_id": "mini-png-asset-pipeline"
+}

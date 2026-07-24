@@ -1,0 +1,70 @@
+{
+  "package": "crdtnotebook",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-immutable-operations",
+      "number": 1,
+      "public_api": [
+        "class NotebookOp:",
+        "def parse_notebook_ops(text: str) -> list[NotebookOp]"
+      ],
+      "public_cases": [
+        "two-actor-inserts-parse",
+        "duplicate-actor-sequence-raises"
+      ]
+    },
+    {
+      "name": "2-validate-causal-dag",
+      "number": 2,
+      "public_api": [
+        "class CrdtProblem:",
+        "def validate_notebook_dag(ops: list[NotebookOp]) -> list[CrdtProblem]"
+      ],
+      "public_cases": [
+        "missing-dependency-reported",
+        "causal-cycle-reported"
+      ]
+    },
+    {
+      "name": "3-merge-notebook-text-deterministically",
+      "number": 3,
+      "public_api": [
+        "class NotebookCell:",
+        "def merge_notebook_text(ops: list[NotebookOp]) -> list[NotebookCell]"
+      ],
+      "public_cases": [
+        "concurrent-inserts-ordered",
+        "delete-leaves-tombstone"
+      ]
+    },
+    {
+      "name": "4-compute-frontiers-and-compaction-plan",
+      "number": 4,
+      "public_api": [
+        "class CrdtCompactionPlan:",
+        "def plan_notebook_compaction(ops: list[NotebookOp], peer_frontiers: dict[str, list[str]]) -> CrdtCompactionPlan"
+      ],
+      "public_cases": [
+        "stable-tombstone-compacted",
+        "unseen-operation-retained"
+      ]
+    },
+    {
+      "name": "5-integrated-notebook-recovery-and-migration",
+      "number": 5,
+      "public_api": [
+        "class CrdtNotebookAuditReport:",
+        "def audit_crdt_notebook(snapshot: str | None, journal: str, peer_frontiers: dict[str, list[str]]) -> CrdtNotebookAuditReport"
+      ],
+      "public_cases": [
+        "journal-only-audit",
+        "snapshot-schema-migration-audit"
+      ]
+    }
+  ]
+}

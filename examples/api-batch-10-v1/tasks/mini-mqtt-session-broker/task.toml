@@ -1,0 +1,69 @@
+schema_version = "1.3"
+multi_step_reward_strategy = "final"
+artifacts = ["/app/workspace"]
+
+[task]
+name = "terminal-data-factory/mini-mqtt-session-broker"
+description = "Build Offline MQTT Session Broker State Machine as an offline, deterministic Python system in five progressive implementation steps."
+authors = [{ name = "Terminal Data Factory Team" }]
+keywords = ["message broker protocol state", "greenfield", "multi-step"]
+
+[[steps]]
+name = "1-parse-broker-events"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "2-match-wildcard-subscriptions"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "3-replay-qos-and-retained-state"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "4-plan-session-migration"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "5-integrated-broker-replay-recovery"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[metadata]
+difficulty = "uncalibrated-long-horizon-candidate"
+calibration_status = "target-agent-rollouts-required"
+language = "python"
+domain = "message broker protocol state"
+codebase_profile = "greenfield"
+trajectory_shape = "five-step-progressive-greenfield"
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 40000.0
+max_steps = 500
+
+[environment]
+build_timeout_sec = 300.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192
+gpus = 0
+allow_internet = false
+workdir = "/app/workspace"

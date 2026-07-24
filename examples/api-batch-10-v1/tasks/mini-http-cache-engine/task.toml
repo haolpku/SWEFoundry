@@ -1,0 +1,69 @@
+schema_version = "1.3"
+multi_step_reward_strategy = "final"
+artifacts = ["/app/workspace"]
+
+[task]
+name = "terminal-data-factory/mini-http-cache-engine"
+description = "Build Offline HTTP Cache Semantics Engine as an offline, deterministic Python system in five progressive implementation steps."
+authors = [{ name = "Terminal Data Factory Team" }]
+keywords = ["HTTP caching and persistence", "greenfield", "multi-step"]
+
+[[steps]]
+name = "1-canonicalize-requests-and-responses"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "2-evaluate-freshness-and-stale-policy"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "3-merge-conditional-304-responses"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "4-apply-invalidation-rules"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "5-integrated-cache-audit-and-recovery"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[metadata]
+difficulty = "uncalibrated-long-horizon-candidate"
+calibration_status = "target-agent-rollouts-required"
+language = "python"
+domain = "HTTP caching and persistence"
+codebase_profile = "greenfield"
+trajectory_shape = "five-step-progressive-greenfield"
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 40000.0
+max_steps = 500
+
+[environment]
+build_timeout_sec = 300.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192
+gpus = 0
+allow_internet = false
+workdir = "/app/workspace"

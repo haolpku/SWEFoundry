@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "worker_scope": [
+    "mini-http-cache-engine",
+    "mini-ical-sync-engine",
+    "mini-pcap-stream-reassembler"
+  ],
+  "model": "gpt-5.5",
+  "endpoint_persisted": false,
+  "credentials_persisted": false,
+  "provider_response_id_status": "not returned by provider",
+  "usage": {
+    "mini-http-cache-engine": {
+      "core_tokens": 11142,
+      "verification_tokens": 32746,
+      "total_tokens": 43888
+    },
+    "mini-ical-sync-engine": {
+      "core_tokens": 11382,
+      "verification_tokens": 33511,
+      "total_tokens": 44893
+    },
+    "mini-pcap-stream-reassembler": {
+      "core_tokens": 9962,
+      "verification_tokens": 29768,
+      "total_tokens": 39730
+    },
+    "worker_total_tokens": 128511
+  },
+  "deterministic_repairs": [
+    "Normalized public smoke README and mutant paths.",
+    "Normalized run_audit mutant references and top-level passed schema.",
+    "Added instruction links to the public contract and smoke command.",
+    "Enforced Python isolated-mode verifier launch without PYTHONPATH/PYTHONHOME.",
+    "Preserved PCAP nested Python byte escapes with raw fixture literals."
+  ],
+  "final_gates": {
+    "safe_materialization": "3/3",
+    "static_task_validation": "3/3",
+    "public_contract_steps": "15/15",
+    "starter_rejected": "15/15",
+    "oracle_passed": "15/15",
+    "mutants_rejected": "15/15",
+    "isolation_probes": "3/3",
+    "repeat_audit_digest_match": "3/3"
+  },
+  "audit_sha256": {
+    "mini-http-cache-engine": "ce5c4a47c5b8001993b6275cb662dbac82d65182801645c5fb89384da5f35ed5",
+    "mini-ical-sync-engine": "aa1a8685c798e1aa881a391b8e8347f3fcb4ffd2ac7c271f08d47330d6e33702",
+    "mini-pcap-stream-reassembler": "b493dda09af8577d9aa21dd731d8d4ae5380459c2cc631a04c5f2551b6a084d6"
+  },
+  "open_gates": [
+    "Harbor Oracle/Nop execution has not yet been attached.",
+    "Target-agent rollout count remains zero.",
+    "Difficulty remains uncalibrated.",
+    "Expert semantic and provenance review remains required."
+  ]
+}

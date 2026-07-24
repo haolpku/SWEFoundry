@@ -1,0 +1,23 @@
+{
+  "changes": [
+    "made CASE_PREFIX substitution literal in verifier/common.py",
+    "linked public contract in steps/1-parse-png-chunks/instruction.md",
+    "isolated verifier process in steps/1-parse-png-chunks/tests/test.sh",
+    "linked public contract in steps/2-verify-crc-and-chunk-invariants/instruction.md",
+    "isolated verifier process in steps/2-verify-crc-and-chunk-invariants/tests/test.sh",
+    "linked public contract in steps/3-extract-deterministic-asset-metadata/instruction.md",
+    "isolated verifier process in steps/3-extract-deterministic-asset-metadata/tests/test.sh",
+    "linked public contract in steps/4-plan-deterministic-png-cleanup/instruction.md",
+    "isolated verifier process in steps/4-plan-deterministic-png-cleanup/tests/test.sh",
+    "linked public contract in steps/5-integrated-png-audit/instruction.md",
+    "isolated verifier process in steps/5-integrated-png-audit/tests/test.sh"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_ignores_trailing_truncation.py",
+    "verifier/anti_cheat/fp2_skips_ancillary_crc.py",
+    "verifier/anti_cheat/fp3_input_order_text.py",
+    "verifier/anti_cheat/fp4_repairs_critical_by_drop.py",
+    "verifier/anti_cheat/fp5_metadata_only_audit.py"
+  ],
+  "task_id": "mini-png-asset-pipeline"
+}

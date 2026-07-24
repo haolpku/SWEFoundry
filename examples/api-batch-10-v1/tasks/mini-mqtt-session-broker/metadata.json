@@ -1,0 +1,44 @@
+{
+  "difficulty": {
+    "evidence_required": "repeated cross-family target-agent rollouts",
+    "label": "uncalibrated-long-horizon-candidate"
+  },
+  "license": {
+    "distribution": "expert-review-only",
+    "status": "pending-owner-approval"
+  },
+  "product_type": "multi-step-greenfield",
+  "provenance": {
+    "contains_proprietary_data": false,
+    "copied_code": false,
+    "kind": "open-source-concept-study",
+    "owner": "Terminal Data Factory Team",
+    "source": "https://github.com/eclipse-mosquitto/mosquitto",
+    "source_license": "EPL-2.0"
+  },
+  "quality": {
+    "behavioral_checks": 42,
+    "behavioral_checks_by_step": {
+      "1-parse-broker-events": 8,
+      "2-match-wildcard-subscriptions": 9,
+      "3-replay-qos-and-retained-state": 8,
+      "4-plan-session-migration": 8,
+      "5-integrated-broker-replay-recovery": 9
+    },
+    "curated_false_positives": 5,
+    "local_audit": {
+      "cumulative_oracle_steps_passed": 5,
+      "cumulative_public_smokes_passed": 5,
+      "independent_check_inventory_confirmed": true,
+      "isolation_probe_passed": true,
+      "repeat_audit_runs": 2,
+      "starter_steps_rejected": 5,
+      "step_mutants_rejected": 5
+    },
+    "target_agent_rollouts": 0
+  },
+  "release_status": "verifier-audited",
+  "schema_version": "1.0",
+  "steps": 5,
+  "task_id": "mini-mqtt-session-broker"
+}

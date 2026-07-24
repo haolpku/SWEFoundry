@@ -1,0 +1,91 @@
+{
+  "gates": {
+    "fp1_mutant_killed_by_step_1": {
+      "correctness": 0.875,
+      "mutant_applied": true,
+      "passed": true,
+      "release_pass": 0
+    },
+    "fp2_mutant_killed_by_step_2": {
+      "correctness": 0.875,
+      "mutant_applied": true,
+      "passed": true,
+      "release_pass": 0
+    },
+    "fp3_mutant_killed_by_step_3": {
+      "correctness": 0.875,
+      "mutant_applied": true,
+      "passed": true,
+      "release_pass": 0
+    },
+    "fp4_mutant_killed_by_step_4": {
+      "correctness": 0.75,
+      "mutant_applied": true,
+      "passed": true,
+      "release_pass": 0
+    },
+    "fp5_mutant_killed_by_step_5": {
+      "correctness": 0.7777777777777778,
+      "mutant_applied": true,
+      "passed": true,
+      "release_pass": 0
+    },
+    "sitecustomize_and_pythonpath_isolation": {
+      "marker_created": false,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_1_oracle_release_pass_1": {
+      "correctness": 1.0,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_1_starter_release_pass_0": {
+      "correctness": 0.75,
+      "passed": true,
+      "release_pass": 0
+    },
+    "step_2_oracle_release_pass_1": {
+      "correctness": 1.0,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_2_starter_release_pass_0": {
+      "correctness": 0.125,
+      "passed": true,
+      "release_pass": 0
+    },
+    "step_3_oracle_release_pass_1": {
+      "correctness": 1.0,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_3_starter_release_pass_0": {
+      "correctness": 0.5,
+      "passed": true,
+      "release_pass": 0
+    },
+    "step_4_oracle_release_pass_1": {
+      "correctness": 1.0,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_4_starter_release_pass_0": {
+      "correctness": 0.25,
+      "passed": true,
+      "release_pass": 0
+    },
+    "step_5_oracle_release_pass_1": {
+      "correctness": 1.0,
+      "passed": true,
+      "release_pass": 1
+    },
+    "step_5_starter_release_pass_0": {
+      "correctness": 0.6666666666666666,
+      "passed": true,
+      "release_pass": 0
+    }
+  },
+  "passed": true,
+  "task_id": "mini-wasm-module-auditor"
+}

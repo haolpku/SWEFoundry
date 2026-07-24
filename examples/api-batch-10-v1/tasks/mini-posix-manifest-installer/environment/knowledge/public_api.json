@@ -1,0 +1,71 @@
+{
+  "package": "posix_manifest_installer",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-validate-deployment-manifest",
+      "number": 1,
+      "public_api": [
+        "class ManifestEntry:",
+        "def load_deploy_manifest(path: str) -> list[ManifestEntry]"
+      ],
+      "public_cases": [
+        "valid-two-file-manifest",
+        "dotdot-destination-rejected"
+      ]
+    },
+    {
+      "name": "2-plan-atomic-install-operations",
+      "number": 2,
+      "public_api": [
+        "class InstallOp:",
+        "def plan_install(root: str, entries: list[ManifestEntry]) -> list[InstallOp]"
+      ],
+      "public_cases": [
+        "new-file-copy-plan",
+        "unchanged-file-noop"
+      ]
+    },
+    {
+      "name": "3-write-and-replay-intent-records",
+      "number": 3,
+      "public_api": [
+        "class RecoveryError(Exception):",
+        "def write_intent_log(path: str, ops: list[InstallOp]) -> None",
+        "def replay_intent_log(root: str, log_path: str) -> list[str]"
+      ],
+      "public_cases": [
+        "replay-completes-pending-copy",
+        "second-replay-is-idempotent"
+      ]
+    },
+    {
+      "name": "4-plan-rollback-from-manifest",
+      "number": 4,
+      "public_api": [
+        "class RollbackPlan:",
+        "def plan_rollback(root: str, log_path: str) -> RollbackPlan"
+      ],
+      "public_cases": [
+        "rollback-restores-replaced-file",
+        "missing-backup-reported"
+      ]
+    },
+    {
+      "name": "5-integrated-safe-install-audit",
+      "number": 5,
+      "public_api": [
+        "class InstallAuditReport:",
+        "def audit_install(root: str, manifest_path: str, log_path: str) -> InstallAuditReport"
+      ],
+      "public_cases": [
+        "clean-install-audit",
+        "partial-install-recovery-audit"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "task_id": "mini-posix-manifest-installer",
+  "schema_version": "1.0",
+  "hidden_behavioral_names_disclosed": {
+    "step-1": ["path normalization", "duplicate destination detection", "canonical ordering"],
+    "step-2": ["digest integrity", "directory creation ordering", "read-only planning"],
+    "step-3": ["durable replay", "idempotency", "impossible state detection"],
+    "step-4": ["backup digest validation", "delete versus restore semantics", "error aggregation"],
+    "step-5": ["steps 1-4 regression", "atomicity model", "read-only versus replay behavior"]
+  },
+  "mutants": {
+    "fp1_allows_traversal.py": "allows-traversal",
+    "fp2_mtime_comparison.py": "mtime-comparison",
+    "fp3_nonidempotent_replay.py": "nonidempotent-replay",
+    "fp4_trusts_backup_name.py": "trusts-backup-name",
+    "fp5_plans_before_recovery.py": "plans-before-recovery"
+  }
+}

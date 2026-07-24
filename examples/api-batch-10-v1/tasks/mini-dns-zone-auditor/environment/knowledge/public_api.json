@@ -1,0 +1,70 @@
+{
+  "package": "dns_zone_auditor",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-zone-master-files",
+      "number": 1,
+      "public_api": [
+        "class DnsRecord:",
+        "def parse_zone(text: str, origin: str) -> list[DnsRecord]"
+      ],
+      "public_cases": [
+        "origin-relative-names",
+        "txt-with-spaces"
+      ]
+    },
+    {
+      "name": "2-validate-zone-integrity",
+      "number": 2,
+      "public_api": [
+        "class ZoneProblem:",
+        "def validate_zone(records: list[DnsRecord]) -> list[ZoneProblem]"
+      ],
+      "public_cases": [
+        "cname-conflict-reported",
+        "missing-apex-ns-reported"
+      ]
+    },
+    {
+      "name": "3-simulate-offline-dns-answers",
+      "number": 3,
+      "public_api": [
+        "class DnsAnswer:",
+        "def answer_zone(records: list[DnsRecord], qname: str, qtype: str) -> DnsAnswer"
+      ],
+      "public_cases": [
+        "a-record-answer",
+        "cname-chain-answer"
+      ]
+    },
+    {
+      "name": "4-plan-serial-and-digest-migration",
+      "number": 4,
+      "public_api": [
+        "class ZoneMigration:",
+        "def plan_zone_migration(records: list[DnsRecord], target_ttl: int) -> ZoneMigration"
+      ],
+      "public_cases": [
+        "serial-increment-planned",
+        "already-normalized-empty-changes"
+      ]
+    },
+    {
+      "name": "5-integrated-zone-audit",
+      "number": 5,
+      "public_api": [
+        "class ZoneAuditReport:",
+        "def audit_zone(text: str, origin: str, queries: list[tuple[str, str]], target_ttl: int) -> ZoneAuditReport"
+      ],
+      "public_cases": [
+        "healthy-zone-audit",
+        "broken-zone-audit-with-query"
+      ]
+    }
+  ]
+}

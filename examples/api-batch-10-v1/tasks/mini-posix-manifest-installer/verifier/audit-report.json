@@ -1,0 +1,135 @@
+{
+  "gates": [
+    {
+      "name": "mutant_step_1_release_pass_zero",
+      "observed": {
+        "correctness": 0.8571428571428571,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_step_2_release_pass_zero",
+      "observed": {
+        "correctness": 0.7142857142857143,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_step_3_release_pass_zero",
+      "observed": {
+        "correctness": 0.7142857142857143,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_step_4_release_pass_zero",
+      "observed": {
+        "correctness": 0.8571428571428571,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_step_5_release_pass_zero",
+      "observed": {
+        "correctness": 0.875,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_step_1_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_step_2_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_step_3_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_step_4_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_step_5_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "sitecustomize_and_pythonpath_isolation",
+      "observed": {
+        "marker_absent": true,
+        "release_pass": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_1_release_pass_zero",
+      "observed": {
+        "correctness": 0.8571428571428571,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_2_release_pass_zero",
+      "observed": {
+        "correctness": 0.0,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_3_release_pass_zero",
+      "observed": {
+        "correctness": 0.0,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_4_release_pass_zero",
+      "observed": {
+        "correctness": 0.0,
+        "release_pass": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_5_release_pass_zero",
+      "observed": {
+        "correctness": 0.0,
+        "release_pass": 0
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "schema_version": "1.0",
+  "task_id": "mini-posix-manifest-installer"
+}

@@ -1,0 +1,91 @@
+{
+  "gates": [
+    {
+      "gate": "oracle_step-1_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true
+    },
+    {
+      "gate": "oracle_step-2_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true
+    },
+    {
+      "gate": "oracle_step-3_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true
+    },
+    {
+      "gate": "oracle_step-4_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true
+    },
+    {
+      "gate": "oracle_step-5_release_pass_one",
+      "observed_release_pass": 1,
+      "passed": true
+    },
+    {
+      "gate": "sitecustomize_and_pythonpath_isolation",
+      "passed": true
+    },
+    {
+      "gate": "starter_step-1_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true
+    },
+    {
+      "gate": "starter_step-2_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true
+    },
+    {
+      "gate": "starter_step-3_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true
+    },
+    {
+      "gate": "starter_step-4_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true
+    },
+    {
+      "gate": "starter_step-5_release_pass_zero",
+      "observed_release_pass": 0,
+      "passed": true
+    }
+  ],
+  "mutants": [
+    {
+      "mutant": "fp1_ignores_vary",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-1"
+    },
+    {
+      "mutant": "fp2_expires_over_max_age",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-2"
+    },
+    {
+      "mutant": "fp3_drops_body_on_304",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-3"
+    },
+    {
+      "mutant": "fp4_invalidates_only_exact_key",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-4"
+    },
+    {
+      "mutant": "fp5_replays_before_snapshot_validation",
+      "observed_release_pass": 0,
+      "passed": true,
+      "step": "step-5"
+    }
+  ],
+  "passed": true
+}

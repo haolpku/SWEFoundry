@@ -1,0 +1,70 @@
+{
+  "package": "mqtt_session_broker",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-parse-broker-events",
+      "number": 1,
+      "public_api": [
+        "class MqttEvent:",
+        "def parse_mqtt_events(text: str) -> list[MqttEvent]"
+      ],
+      "public_cases": [
+        "connect-subscribe-publish-events",
+        "duplicate-sequence-raises"
+      ]
+    },
+    {
+      "name": "2-match-wildcard-subscriptions",
+      "number": 2,
+      "public_api": [
+        "class Subscription:",
+        "def match_mqtt_subscriptions(subscriptions: list[Subscription], topic: str) -> list[str]"
+      ],
+      "public_cases": [
+        "single-level-wildcard-match",
+        "multi-level-wildcard-match"
+      ]
+    },
+    {
+      "name": "3-replay-qos-and-retained-state",
+      "number": 3,
+      "public_api": [
+        "class BrokerState:",
+        "def replay_mqtt_events(events: list[MqttEvent]) -> BrokerState"
+      ],
+      "public_cases": [
+        "qos1-awaits-ack",
+        "retained-message-delivered-on-subscribe"
+      ]
+    },
+    {
+      "name": "4-plan-session-migration",
+      "number": 4,
+      "public_api": [
+        "class MqttMigrationAdvice:",
+        "def plan_mqtt_migration(state: BrokerState) -> list[MqttMigrationAdvice]"
+      ],
+      "public_cases": [
+        "unsupported-qos-advice",
+        "compaction-advice-for-acked-deliveries"
+      ]
+    },
+    {
+      "name": "5-integrated-broker-replay-recovery",
+      "number": 5,
+      "public_api": [
+        "class MqttAuditReport:",
+        "def audit_mqtt_session(snapshot: str | None, journal: str) -> MqttAuditReport"
+      ],
+      "public_cases": [
+        "fresh-journal-audit",
+        "snapshot-journal-recovery-audit"
+      ]
+    }
+  ]
+}

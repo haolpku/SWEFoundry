@@ -1,0 +1,288 @@
+{
+  "gates": [
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "python_isolation_ignores_sitecustomize_pythonpath_pythonhome",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-1:cumulative_oracle_release_pass_is_one",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "installed": true
+      },
+      "name": "step-1:cumulative_public_smoke_passes",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.875,
+        "mutant_exit_code": 0,
+        "release_pass": 0
+      },
+      "name": "step-1:fp1_last_duplicate_wins.py:mutant_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.0,
+        "exit_code": 1,
+        "release_pass": 0,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-1:starter_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-2:cumulative_oracle_release_pass_is_one",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "installed": true
+      },
+      "name": "step-2:cumulative_public_smoke_passes",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.875,
+        "mutant_exit_code": 0,
+        "release_pass": 0
+      },
+      "name": "step-2:fp2_allows_missing_dependency.py:mutant_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.125,
+        "exit_code": 1,
+        "release_pass": 0,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-2:starter_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-3:cumulative_oracle_release_pass_is_one",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "installed": true
+      },
+      "name": "step-3:cumulative_public_smoke_passes",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.75,
+        "mutant_exit_code": 0,
+        "release_pass": 0
+      },
+      "name": "step-3:fp3_input_order_concurrency.py:mutant_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.0,
+        "exit_code": 1,
+        "release_pass": 0,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-3:starter_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-4:cumulative_oracle_release_pass_is_one",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "installed": true
+      },
+      "name": "step-4:cumulative_public_smoke_passes",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.875,
+        "mutant_exit_code": 0,
+        "release_pass": 0
+      },
+      "name": "step-4:fp4_compacts_unacknowledged.py:mutant_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.0,
+        "exit_code": 1,
+        "release_pass": 0,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-4:starter_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 1.0,
+        "exit_code": 0,
+        "release_pass": 1,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-5:cumulative_oracle_release_pass_is_one",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "installed": true
+      },
+      "name": "step-5:cumulative_public_smoke_passes",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.7777777777777778,
+        "mutant_exit_code": 0,
+        "release_pass": 0
+      },
+      "name": "step-5:fp5_merges_before_dag_validation.py:mutant_release_pass_is_zero",
+      "passed": true
+    },
+    {
+      "detail": {
+        "correctness": 0.1111111111111111,
+        "exit_code": 1,
+        "release_pass": 0,
+        "reward_keys": [
+          "code_quality",
+          "correctness",
+          "efficiency",
+          "reasoning",
+          "release_pass",
+          "weighted_total"
+        ]
+      },
+      "name": "step-5:starter_release_pass_is_zero",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "schema_version": "1.0",
+  "summary": {
+    "cumulative_oracle_steps": 5,
+    "cumulative_public_smokes": 5,
+    "gates": 21,
+    "gates_passed": 21,
+    "isolation_probes": 1,
+    "starter_steps": 5,
+    "step_mutants": 5
+  },
+  "task_id": "mini-crdt-notebook-engine"
+}

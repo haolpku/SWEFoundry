@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "status": "locally-verifier-audited",
+  "model": "gpt-5.5",
+  "endpoint": "<REDACTED_OPENAI_COMPATIBLE_ENDPOINT>",
+  "credentials_persisted": false,
+  "task_count": 3,
+  "totals": {
+    "bundle_files": 183,
+    "core_tokens": 33746,
+    "verification_tokens": 100430,
+    "total_tokens": 134176,
+    "static_validators_passed": 3,
+    "audits_passed": 3,
+    "audit_gates_passed": 48,
+    "audit_gates_total": 48,
+    "solution_scripts_passed": 15,
+    "solution_scripts_total": 15,
+    "public_smokes_passed": 15,
+    "public_smokes_total": 15,
+    "repeatable_audits": 3,
+    "clean_sensitive_scans": 3,
+    "source_unchanged_checks": 3
+  },
+  "tasks": [
+    {
+      "task_id": "mini-mqtt-session-broker",
+      "bundle_files": 57,
+      "usage": {
+        "core_tokens": 9994,
+        "verification_tokens": 35776,
+        "total_tokens": 45770
+      },
+      "static_validator_passed": true,
+      "audit_gates_passed": 16,
+      "audit_gates_total": 16,
+      "audit_report_sha256": "2068f587505a7d9d8f2a9e47a616cbd7a232af4c6289ba73635fd2504f492b21",
+      "repeat_audit_hash_identical": true,
+      "sensitive_scan_findings": 0,
+      "source_unchanged": true,
+      "qa_report": "mini-mqtt-session-broker-batch-qa.json",
+      "repair_records": [
+        "../repairs/mini-mqtt-session-broker.json"
+      ]
+    },
+    {
+      "task_id": "mini-png-asset-pipeline",
+      "bundle_files": 62,
+      "usage": {
+        "core_tokens": 10626,
+        "verification_tokens": 34035,
+        "total_tokens": 44661
+      },
+      "static_validator_passed": true,
+      "audit_gates_passed": 16,
+      "audit_gates_total": 16,
+      "audit_report_sha256": "c13f430bb8e205950576704a56b4dbcc89fb7e6c9d9478a639951cd9e48263a3",
+      "repeat_audit_hash_identical": true,
+      "sensitive_scan_findings": 0,
+      "source_unchanged": true,
+      "qa_report": "mini-png-asset-pipeline-batch-qa.json",
+      "repair_records": [
+        "../repairs/mini-png-asset-pipeline.json",
+        "../repairs/mini-png-asset-pipeline-pass2.json"
+      ]
+    },
+    {
+      "task_id": "mini-wasm-module-auditor",
+      "bundle_files": 64,
+      "usage": {
+        "core_tokens": 13126,
+        "verification_tokens": 30619,
+        "total_tokens": 43745
+      },
+      "static_validator_passed": true,
+      "audit_gates_passed": 16,
+      "audit_gates_total": 16,
+      "audit_report_sha256": "e17d92d2bd10f747fe668d93489c61787c0eb4807b3cd81f88b70bdd3916f61b",
+      "repeat_audit_hash_identical": true,
+      "sensitive_scan_findings": 0,
+      "source_unchanged": true,
+      "qa_report": "mini-wasm-module-auditor-batch-qa.json",
+      "repair_records": [
+        "../repairs/mini-wasm-module-auditor.json",
+        "../repairs/mini-wasm-module-auditor-core.json",
+        "../repairs/mini-wasm-module-auditor-pass2.json",
+        "../repairs/mini-wasm-module-auditor-pass3.json"
+      ]
+    }
+  ]
+}

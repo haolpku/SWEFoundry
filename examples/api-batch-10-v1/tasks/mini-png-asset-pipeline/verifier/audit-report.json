@@ -1,0 +1,149 @@
+{
+  "gates": [
+    {
+      "name": "mutant_fp1_release_pass_zero",
+      "observed": {
+        "correctness": 0.875,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_fp2_release_pass_zero",
+      "observed": {
+        "correctness": 0.875,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_fp3_release_pass_zero",
+      "observed": {
+        "correctness": 0.777778,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_fp4_release_pass_zero",
+      "observed": {
+        "correctness": 0.888889,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "mutant_fp5_release_pass_zero",
+      "observed": {
+        "correctness": 0.666667,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_cumulative_step_1_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1,
+        "returncode": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_cumulative_step_2_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1,
+        "returncode": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_cumulative_step_3_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1,
+        "returncode": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_cumulative_step_4_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1,
+        "returncode": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "oracle_cumulative_step_5_release_pass_one",
+      "observed": {
+        "correctness": 1.0,
+        "release_pass": 1,
+        "returncode": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "sitecustomize_and_pythonpath_isolation",
+      "observed": {
+        "release_pass": 1,
+        "sitecustomize_marker": "absent"
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_1_release_pass_zero",
+      "observed": {
+        "correctness": 0.625,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_2_release_pass_zero",
+      "observed": {
+        "correctness": 0.25,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_3_release_pass_zero",
+      "observed": {
+        "correctness": 0.444444,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_4_release_pass_zero",
+      "observed": {
+        "correctness": 0.333333,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    },
+    {
+      "name": "starter_step_5_release_pass_zero",
+      "observed": {
+        "correctness": 0.222222,
+        "release_pass": 0,
+        "returncode": 1
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "task_id": "mini-png-asset-pipeline"
+}

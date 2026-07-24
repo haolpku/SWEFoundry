@@ -1,0 +1,69 @@
+{
+  "package": "mini_http_cache_engine",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-canonicalize-requests-and-responses",
+      "number": 1,
+      "public_api": [
+        "class HttpCacheEntry:",
+        "def build_cache_key(request: dict[str, str], response: dict[str, str]) -> str"
+      ],
+      "public_cases": [
+        "host-case-normalized",
+        "vary-header-in-key"
+      ]
+    },
+    {
+      "name": "2-evaluate-freshness-and-stale-policy",
+      "number": 2,
+      "public_api": [
+        "class FreshnessDecision:",
+        "def evaluate_http_freshness(entry: HttpCacheEntry, now: int) -> FreshnessDecision"
+      ],
+      "public_cases": [
+        "max-age-fresh",
+        "expired-response-stale"
+      ]
+    },
+    {
+      "name": "3-merge-conditional-304-responses",
+      "number": 3,
+      "public_api": [
+        "def merge_http_304(entry: HttpCacheEntry, response_304: dict[str, str]) -> HttpCacheEntry"
+      ],
+      "public_cases": [
+        "etag-304-merge",
+        "mismatched-etag-raises"
+      ]
+    },
+    {
+      "name": "4-apply-invalidation-rules",
+      "number": 4,
+      "public_api": [
+        "class InvalidationResult:",
+        "def invalidate_http_cache(entries: list[HttpCacheEntry], event: dict[str, str]) -> InvalidationResult"
+      ],
+      "public_cases": [
+        "post-invalidates-uri",
+        "no-store-not-retained"
+      ]
+    },
+    {
+      "name": "5-integrated-cache-audit-and-recovery",
+      "number": 5,
+      "public_api": [
+        "class HttpCacheAuditReport:",
+        "def audit_http_cache(snapshot_path: str, events: list[dict[str, str]], now: int) -> HttpCacheAuditReport"
+      ],
+      "public_cases": [
+        "fresh-cache-audit",
+        "truncated-snapshot-recovery"
+      ]
+    }
+  ]
+}

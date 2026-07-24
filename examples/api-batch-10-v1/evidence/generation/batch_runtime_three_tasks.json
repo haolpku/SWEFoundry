@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "worker_scope": [
+    "mini-systemd-unit-linter",
+    "mini-posix-manifest-installer",
+    "mini-dns-zone-auditor"
+  ],
+  "model": "gpt-5.5",
+  "endpoint": "<REDACTED_OPENAI_COMPATIBLE_ENDPOINT>",
+  "credentials_persisted": false,
+  "tasks": [
+    {
+      "task_id": "mini-systemd-unit-linter",
+      "usage": {
+        "prompt_tokens": 7782,
+        "completion_tokens": 29665,
+        "total_tokens": 37447
+      },
+      "behavioral_checks": 38,
+      "static_validation": "pass",
+      "starter_steps_rejected": "5/5",
+      "oracle_steps_passed": "5/5",
+      "mutants_rejected": "5/5",
+      "isolation": "pass",
+      "audit_report_passed": true,
+      "repairs": [
+        "Made the duplicate-normalized-name fixture portable across case-sensitive and case-insensitive host filesystems by placing colliding names in separate roots."
+      ]
+    },
+    {
+      "task_id": "mini-posix-manifest-installer",
+      "usage": {
+        "prompt_tokens": 15274,
+        "completion_tokens": 36012,
+        "total_tokens": 51286
+      },
+      "behavioral_checks": 36,
+      "static_validation": "pass",
+      "starter_steps_rejected": "5/5",
+      "oracle_steps_passed": "5/5",
+      "mutants_rejected": "5/5",
+      "isolation": "pass",
+      "audit_report_passed": true,
+      "repairs": []
+    },
+    {
+      "task_id": "mini-dns-zone-auditor",
+      "usage": {
+        "prompt_tokens": 11804,
+        "completion_tokens": 31925,
+        "total_tokens": 43729
+      },
+      "behavioral_checks": 43,
+      "static_validation": "pass",
+      "starter_steps_rejected": "5/5",
+      "oracle_steps_passed": "5/5",
+      "mutants_rejected": "5/5",
+      "isolation": "pass",
+      "audit_report_passed": true,
+      "repairs": [
+        "Disambiguated a one-label owner named a from the DNS A record type.",
+        "Derived a misplaced SOA apex from the meaningful common owner suffix without adding an undisclosed API input.",
+        "Moved the Step 4 deterministic mutant to the canonical ordering path so the injected fault is observable."
+      ]
+    }
+  ],
+  "remaining_gates": [
+    "Harbor Oracle/Nop execution",
+    "target-agent rollout",
+    "cross-family difficulty calibration",
+    "expert semantic and provenance review"
+  ]
+}

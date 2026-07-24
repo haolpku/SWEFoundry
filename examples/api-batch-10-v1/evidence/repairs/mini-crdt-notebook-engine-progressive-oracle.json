@@ -1,0 +1,23 @@
+{
+  "changes": [
+    "Replace Step 3 patch-only engine with cumulative Step 1-3 module.",
+    "Replace Step 4 patch-only engine with cumulative Step 1-4 module.",
+    "Use progressive package __init__.py exports for Starter and Steps 1-5.",
+    "Make every solve.sh install engine.py and __init__.py.",
+    "Replace final-solution substitution with Step 1..N cumulative audit.",
+    "Add five cumulative public-smoke gates to task audit."
+  ],
+  "kind": "p0-progressive-oracle-repair",
+  "reproduced_before_fix": {
+    "cumulative_steps_passed": 3,
+    "cumulative_steps_total": 5,
+    "failed_steps": [
+      3,
+      4
+    ],
+    "step_3_correctness": 0.0,
+    "step_4_correctness": 0.0
+  },
+  "schema_version": "1.0",
+  "task_id": "mini-crdt-notebook-engine"
+}

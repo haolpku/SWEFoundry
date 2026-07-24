@@ -1,0 +1,179 @@
+{
+  "cache_hits": 0,
+  "events": [
+    {
+      "cache_hit": false,
+      "inputs": {},
+      "node_id": "sources",
+      "operator": "io.load-records",
+      "operator_version": "1.0",
+      "outputs": {
+        "records": "273c060f67c5d2f68f6f3c138421e893277cd39c611caf5b5f25fa3223ce97d5"
+      },
+      "sequence": 1
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "records": "273c060f67c5d2f68f6f3c138421e893277cd39c611caf5b5f25fa3223ce97d5"
+      },
+      "node_id": "find_topics",
+      "operator": "topic.find",
+      "operator_version": "1.0",
+      "outputs": {
+        "candidates": "401d5455056daaac5cff975e7177cae3fcc774d0a27d28c54899e5f0d8c18d2a",
+        "rejected": "d9998e71f0b6fe67c6745e9debf9fea0b3741a5b7a573f73b8a6ee5fd2d62a12"
+      },
+      "sequence": 2
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "candidates": "401d5455056daaac5cff975e7177cae3fcc774d0a27d28c54899e5f0d8c18d2a"
+      },
+      "node_id": "rank_topics",
+      "operator": "topic.rank",
+      "operator_version": "1.0",
+      "outputs": {
+        "selected": "f008d03b16e8576a42c3289e8342fe95b16281e4a6b48e8c4c93757cae696e98"
+      },
+      "sequence": 3
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "topics": "f008d03b16e8576a42c3289e8342fe95b16281e4a6b48e8c4c93757cae696e98"
+      },
+      "node_id": "design_tasks",
+      "operator": "task.design-multistep",
+      "operator_version": "1.0",
+      "outputs": {
+        "blueprints": "26727e66af6df83bf250ba25d13592bc815d326eec0d0340486d836ff8bdbfb7"
+      },
+      "sequence": 4
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "blueprints": "26727e66af6df83bf250ba25d13592bc815d326eec0d0340486d836ff8bdbfb7"
+      },
+      "node_id": "quality_gate",
+      "operator": "quality.blueprint-gate",
+      "operator_version": "1.0",
+      "outputs": {
+        "accepted": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c",
+        "report": "32c52e79d59bda5971e956366acc737a4c53e0d883a30011a0f49c7ef10e536f"
+      },
+      "sequence": 5
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "blueprints": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c"
+      },
+      "node_id": "compile_contracts",
+      "operator": "contract.compile",
+      "operator_version": "1.0",
+      "outputs": {
+        "contracts": "73da0ed92ec2dc941bdd38ba8239b9e18530e002af44cfb7fe6cc50037d95ac7"
+      },
+      "sequence": 6
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "blueprints": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c"
+      },
+      "node_id": "plan_mutants",
+      "operator": "mutant.plan",
+      "operator_version": "1.0",
+      "outputs": {
+        "plan": "615f86732f06a6411e38a8d150daf7673d6bd2b56d30c60fc69581542884c459"
+      },
+      "sequence": 7
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "blueprints": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c",
+        "contracts": "73da0ed92ec2dc941bdd38ba8239b9e18530e002af44cfb7fe6cc50037d95ac7",
+        "mutants": "615f86732f06a6411e38a8d150daf7673d6bd2b56d30c60fc69581542884c459"
+      },
+      "node_id": "audit_plan",
+      "operator": "quality.audit-plan",
+      "operator_version": "1.0",
+      "outputs": {
+        "plan": "b37eb1d9d62a6b06488ecb3b1021ca35b9e73ded5fc6df969a95b9ddcd882e2d"
+      },
+      "sequence": 8
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "blueprints": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c"
+      },
+      "node_id": "rollout_plan",
+      "operator": "rollout.plan",
+      "operator_version": "1.0",
+      "outputs": {
+        "plan": "0b6af14fd047c36a546e5e020806b390a519f3acac79e59ee643f07928572b08"
+      },
+      "sequence": 9
+    },
+    {
+      "cache_hit": false,
+      "inputs": {
+        "audit": "b37eb1d9d62a6b06488ecb3b1021ca35b9e73ded5fc6df969a95b9ddcd882e2d",
+        "blueprints": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c",
+        "contracts": "73da0ed92ec2dc941bdd38ba8239b9e18530e002af44cfb7fe6cc50037d95ac7",
+        "rollouts": "0b6af14fd047c36a546e5e020806b390a519f3acac79e59ee643f07928572b08"
+      },
+      "node_id": "package_plan",
+      "operator": "release.package-plan",
+      "operator_version": "1.0",
+      "outputs": {
+        "plan": "2721e2b5cff5fbb66f7d1a6dd583d08a93186e9796bc637f475f55e2ad2e7da3"
+      },
+      "sequence": 10
+    }
+  ],
+  "nodes": 10,
+  "outputs": {
+    "audit_plan": {
+      "plan": "b37eb1d9d62a6b06488ecb3b1021ca35b9e73ded5fc6df969a95b9ddcd882e2d"
+    },
+    "compile_contracts": {
+      "contracts": "73da0ed92ec2dc941bdd38ba8239b9e18530e002af44cfb7fe6cc50037d95ac7"
+    },
+    "design_tasks": {
+      "blueprints": "26727e66af6df83bf250ba25d13592bc815d326eec0d0340486d836ff8bdbfb7"
+    },
+    "find_topics": {
+      "candidates": "401d5455056daaac5cff975e7177cae3fcc774d0a27d28c54899e5f0d8c18d2a",
+      "rejected": "d9998e71f0b6fe67c6745e9debf9fea0b3741a5b7a573f73b8a6ee5fd2d62a12"
+    },
+    "package_plan": {
+      "plan": "2721e2b5cff5fbb66f7d1a6dd583d08a93186e9796bc637f475f55e2ad2e7da3"
+    },
+    "plan_mutants": {
+      "plan": "615f86732f06a6411e38a8d150daf7673d6bd2b56d30c60fc69581542884c459"
+    },
+    "quality_gate": {
+      "accepted": "f81abb597a7d744a0adddfc808d5b9a3f47696ec4669f1f0288d1ed74621295c",
+      "report": "32c52e79d59bda5971e956366acc737a4c53e0d883a30011a0f49c7ef10e536f"
+    },
+    "rank_topics": {
+      "selected": "f008d03b16e8576a42c3289e8342fe95b16281e4a6b48e8c4c93757cae696e98"
+    },
+    "rollout_plan": {
+      "plan": "0b6af14fd047c36a546e5e020806b390a519f3acac79e59ee643f07928572b08"
+    },
+    "sources": {
+      "records": "273c060f67c5d2f68f6f3c138421e893277cd39c611caf5b5f25fa3223ce97d5"
+    }
+  },
+  "pipeline_digest": "4792dc162f36b8f1ed12136617c0a85198e59fadaae615d0e09640c526e6721b",
+  "run_id": "api-batch-10-topic-to-calibration-v1",
+  "schema_version": "1.0",
+  "status": "completed"
+}

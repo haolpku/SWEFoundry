@@ -1,0 +1,7 @@
+{
+  "change": "Replace canonical sibling sorting with deterministic reverse sorting; the disclosed concurrent-insert check must reject it.",
+  "kind": "semantic-mutant-repair",
+  "path": "verifier/anti_cheat/fp3_input_order_concurrency.py",
+  "reason": "The generated input-order mutant was observationally inert because parse_notebook_ops canonicalizes input before merge_notebook_text.",
+  "task_id": "mini-crdt-notebook-engine"
+}

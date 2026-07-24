@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "pipeline": "pipelines/topic_to_calibration.json",
+  "operator_count": 10,
+  "first_run_cache_hits": 0,
+  "second_run_cache_hits": 10,
+  "expected": {
+    "source_records": 2,
+    "topic_candidates": 1,
+    "topic_rejections": 1,
+    "accepted_blueprints": 1,
+    "public_contracts": 1,
+    "mutants": 5,
+    "mutants_cover_final_step": true,
+    "audit_plans": 1,
+    "rollout_jobs": 6,
+    "release_package_plans": 1
+  },
+  "release_semantics": {
+    "static_candidate_label": "post-contract-calibration-smoke-complete",
+    "release_label": "full-calibration-required",
+    "difficulty": "uncalibrated"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "package": "wasm_auditor",
+  "policy": {
+    "final_step_regresses_steps_1_through_4": true,
+    "hidden_tests_must_not_require_undisclosed_public_names": true
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "name": "1-read-wasm-binary-sections",
+      "number": 1,
+      "public_api": [
+        "class WasmSection:",
+        "def parse_wasm_sections(data: bytes) -> list[WasmSection]"
+      ],
+      "public_cases": [
+        "empty-module-parses",
+        "bad-magic-raises"
+      ]
+    },
+    {
+      "name": "2-decode-type-import-and-export-metadata",
+      "number": 2,
+      "public_api": [
+        "class WasmSymbol:",
+        "def summarize_wasm_symbols(sections: list[WasmSection]) -> list[WasmSymbol]"
+      ],
+      "public_cases": [
+        "exported-function-summary",
+        "invalid-name-raises"
+      ]
+    },
+    {
+      "name": "3-validate-structural-integrity",
+      "number": 3,
+      "public_api": [
+        "class WasmProblem:",
+        "def validate_wasm_structure(sections: list[WasmSection]) -> list[WasmProblem]"
+      ],
+      "public_cases": [
+        "duplicate-type-section-reported",
+        "export-index-out-of-bounds"
+      ]
+    },
+    {
+      "name": "4-report-compatibility-migrations",
+      "number": 4,
+      "public_api": [
+        "class WasmMigrationAdvice:",
+        "def plan_wasm_migration(sections: list[WasmSection]) -> list[WasmMigrationAdvice]"
+      ],
+      "public_cases": [
+        "unknown-custom-section-advice",
+        "canonical-name-section-advice"
+      ]
+    },
+    {
+      "name": "5-integrated-wasm-audit",
+      "number": 5,
+      "public_api": [
+        "class WasmAuditReport:",
+        "def audit_wasm(data: bytes) -> WasmAuditReport"
+      ],
+      "public_cases": [
+        "valid-module-audit",
+        "invalid-module-audit-problems"
+      ]
+    }
+  ]
+}

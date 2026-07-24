@@ -1,0 +1,44 @@
+{
+  "difficulty": {
+    "evidence_required": "repeated cross-family target-agent rollouts",
+    "label": "uncalibrated-long-horizon-candidate"
+  },
+  "license": {
+    "distribution": "expert-review-only",
+    "status": "pending-owner-approval"
+  },
+  "product_type": "multi-step-greenfield",
+  "provenance": {
+    "contains_proprietary_data": false,
+    "copied_code": false,
+    "kind": "open-source-concept-study",
+    "owner": "Terminal Data Factory Team",
+    "source": "https://github.com/the-tcpdump-group/libpcap",
+    "source_license": "BSD-3-Clause"
+  },
+  "quality": {
+    "behavioral_checks": 41,
+    "behavioral_checks_by_step": {
+      "1-parse-classic-pcap-records": 8,
+      "2-decode-ethernet-ipv4-tcp": 8,
+      "3-reassemble-tcp-streams": 8,
+      "4-emit-deterministic-timeout-events": 8,
+      "5-integrated-pcap-audit-recovery": 9
+    },
+    "curated_false_positives": 5,
+    "local_audit": {
+      "cumulative_oracle_steps_passed": 5,
+      "cumulative_public_smokes_passed": 5,
+      "independent_check_inventory_confirmed": true,
+      "isolation_probe_passed": true,
+      "repeat_audit_runs": 2,
+      "starter_steps_rejected": 5,
+      "step_mutants_rejected": 5
+    },
+    "target_agent_rollouts": 0
+  },
+  "release_status": "verifier-audited",
+  "schema_version": "1.0",
+  "steps": 5,
+  "task_id": "mini-pcap-stream-reassembler"
+}

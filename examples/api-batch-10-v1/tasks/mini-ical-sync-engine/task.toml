@@ -1,0 +1,69 @@
+schema_version = "1.3"
+multi_step_reward_strategy = "final"
+artifacts = ["/app/workspace"]
+
+[task]
+name = "terminal-data-factory/mini-ical-sync-engine"
+description = "Build Deterministic iCalendar Incremental Sync Engine as an offline, deterministic Python system in five progressive implementation steps."
+authors = [{ name = "Terminal Data Factory Team" }]
+keywords = ["calendar data synchronization", "greenfield", "multi-step"]
+
+[[steps]]
+name = "1-parse-icalendar-components"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "2-expand-bounded-recurrences"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "3-apply-incremental-sync-changes"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "4-resolve-sync-conflicts"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[[steps]]
+name = "5-integrated-calendar-sync-recovery"
+[steps.verifier]
+timeout_sec = 300.0
+[steps.agent]
+timeout_sec = 7200.0
+
+[metadata]
+difficulty = "uncalibrated-long-horizon-candidate"
+calibration_status = "target-agent-rollouts-required"
+language = "python"
+domain = "calendar data synchronization"
+codebase_profile = "greenfield"
+trajectory_shape = "five-step-progressive-greenfield"
+
+[verifier]
+timeout_sec = 300.0
+
+[agent]
+timeout_sec = 40000.0
+max_steps = 500
+
+[environment]
+build_timeout_sec = 300.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192
+gpus = 0
+allow_internet = false
+workdir = "/app/workspace"

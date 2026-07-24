@@ -1,0 +1,3 @@
+Public smoke tests for mini-pcap-stream-reassembler.
+
+Run each step_XX_smoke.py from this directory or from the repository root. Each smoke inserts environment/codebase, the candidate package parent, into sys.path before importing pcap_reassembler. These are intentionally small public contract checks; the black-box verifiers in steps/*/tests contain the fuller behavioral gates, including disclosed hidden check names for endian decoding, length bounds, ordering, IPv4/TCP header lengths, overlap resolution, canonical flow keys, timestamp arithmetic, FIN/RST handling, checkpoint replay, and truncation recovery.

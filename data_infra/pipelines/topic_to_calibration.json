@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "run_id": "topic-to-calibration-demo-v1",
+  "nodes": [
+    {
+      "id": "sources",
+      "operator": "io.load-records",
+      "config": {
+        "path": "../inputs/topic_sources.json"
+      }
+    },
+    {
+      "id": "find_topics",
+      "operator": "topic.find",
+      "inputs": {
+        "records": "sources.records"
+      },
+      "config": {
+        "minimum_score": 70
+      }
+    },
+    {
+      "id": "rank_topics",
+      "operator": "topic.rank",
+      "inputs": {
+        "candidates": "find_topics.candidates"
+      },
+      "config": {
+        "limit": 10,
+        "max_per_domain": 2
+      }
+    },
+    {
+      "id": "design_tasks",
+      "operator": "task.design-multistep",
+      "inputs": {
+        "topics": "rank_topics.selected"
+      }
+    },
+    {
+      "id": "quality_gate",
+      "operator": "quality.blueprint-gate",
+      "inputs": {
+        "blueprints": "design_tasks.blueprints"
+      }
+    },
+    {
+      "id": "compile_contracts",
+      "operator": "contract.compile",
+      "inputs": {
+        "blueprints": "quality_gate.accepted"
+      }
+    },
+    {
+      "id": "plan_mutants",
+      "operator": "mutant.plan",
+      "inputs": {
+        "blueprints": "quality_gate.accepted"
+      },
+      "config": {
+        "repeat_count": 3
+      }
+    },
+    {
+      "id": "audit_plan",
+      "operator": "quality.audit-plan",
+      "inputs": {
+        "blueprints": "quality_gate.accepted",
+        "contracts": "compile_contracts.contracts",
+        "mutants": "plan_mutants.plan"
+      },
+      "config": {
+        "repeat_count": 3
+      }
+    },
+    {
+      "id": "rollout_plan",
+      "operator": "rollout.plan",
+      "inputs": {
+        "blueprints": "quality_gate.accepted"
+      },
+      "config": {
+        "model_families": [
+          {
+            "family": "gpt",
+            "model": "deployment/gpt-target"
+          },
+          {
+            "family": "independent-second-family",
+            "model": "deployment/second-target"
+          }
+        ],
+        "attempts": 3,
+        "shard_size": 100
+      }
+    },
+    {
+      "id": "package_plan",
+      "operator": "release.package-plan",
+      "inputs": {
+        "blueprints": "quality_gate.accepted",
+        "contracts": "compile_contracts.contracts",
+        "audit": "audit_plan.plan",
+        "rollouts": "rollout_plan.plan"
+      }
+    }
+  ]
+}

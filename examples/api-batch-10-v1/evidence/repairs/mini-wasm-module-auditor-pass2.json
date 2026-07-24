@@ -1,0 +1,13 @@
+{
+  "changes": [
+    "prevented successful SystemExit from being recaught in step_runner"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_accepts_truncated_section.py",
+    "verifier/anti_cheat/fp2_single_index_space.py",
+    "verifier/anti_cheat/fp3_custom_breaks_order.py",
+    "verifier/anti_cheat/fp4_rewrites_input.py",
+    "verifier/anti_cheat/fp5_summary_before_validation.py"
+  ],
+  "task_id": "mini-wasm-module-auditor"
+}

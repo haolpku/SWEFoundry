@@ -1,0 +1,92 @@
+{
+  "gates": [
+    {
+      "detail": "release_pass=0",
+      "name": "mutant_step-1_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "mutant_step-2_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "mutant_step-3_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "mutant_step-4_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "mutant_step-5_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "oracle_step-1_release_pass_is_1",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "oracle_step-2_release_pass_is_1",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "oracle_step-3_release_pass_is_1",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "oracle_step-4_release_pass_is_1",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "oracle_step-5_release_pass_is_1",
+      "passed": true
+    },
+    {
+      "detail": "ok",
+      "name": "python_I_ignores_sitecustomize_and_pythonpath",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "starter_step-1_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "starter_step-2_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "starter_step-3_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "starter_step-4_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=0",
+      "name": "starter_step-5_release_pass_is_0",
+      "passed": true
+    },
+    {
+      "detail": "release_pass=1",
+      "name": "verifier_strips_pythonpath_and_pythonhome",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "schema_version": "1.0",
+  "task_id": "mini-dns-zone-auditor"
+}

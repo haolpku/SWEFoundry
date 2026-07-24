@@ -1,0 +1,18 @@
+{
+  "changes": [
+    "made verifier interpreter injectable in steps/1-read-wasm-binary-sections/tests/test.sh",
+    "made verifier interpreter injectable in steps/2-decode-type-import-and-export-metadata/tests/test.sh",
+    "made verifier interpreter injectable in steps/3-validate-structural-integrity/tests/test.sh",
+    "made verifier interpreter injectable in steps/4-report-compatibility-migrations/tests/test.sh",
+    "made verifier interpreter injectable in steps/5-integrated-wasm-audit/tests/test.sh",
+    "pinned audit test shells to the audit interpreter"
+  ],
+  "mutants": [
+    "verifier/anti_cheat/fp1_accepts_truncated_section.py",
+    "verifier/anti_cheat/fp2_single_index_space.py",
+    "verifier/anti_cheat/fp3_custom_breaks_order.py",
+    "verifier/anti_cheat/fp4_rewrites_input.py",
+    "verifier/anti_cheat/fp5_summary_before_validation.py"
+  ],
+  "task_id": "mini-wasm-module-auditor"
+}
