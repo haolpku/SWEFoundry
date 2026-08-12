@@ -22,3 +22,6 @@ Run the independent local audit from the repository root:
 The audit creates a fresh workspace for every attempt. Each Starter must score
 below 1, each Oracle must score exactly 1, and two Oracle repetitions must
 produce the same reward payload.
+
+The Hugging Face release additionally uses `tasks.jsonl` as its Dataset Viewer
+index and `HF_DATASET_CARD.md` as the root dataset card.
