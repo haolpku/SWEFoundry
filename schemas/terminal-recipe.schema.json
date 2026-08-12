@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/haolpku/SWEFoundry/schemas/terminal-recipe.schema.json",
+  "title": "SWEFoundry Terminal Production Recipe v1",
+  "type": "object",
+  "required": ["task_id", "family", "instruction", "starter_files", "solution_files", "verifier_files"],
+  "properties": {
+    "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "family": {"const": "terminal-bench"},
+    "instruction": {"type": "string", "minLength": 1},
+    "starter_files": {"$ref": "#/$defs/files"},
+    "solution_files": {"$ref": "#/$defs/files"},
+    "verifier_files": {"$ref": "#/$defs/files", "required": ["verifier.py"]},
+    "base_image": {"type": "string"},
+    "horizon": {"enum": ["short", "medium", "long", "ultra_long"]},
+    "reward_shape": {"enum": ["binary", "test_fraction", "dense", "correctness_gated_continuous"]},
+    "provenance": {"type": "object"}
+  },
+  "$defs": {
+    "files": {
+      "type": "object",
+      "propertyNames": {"pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+      "additionalProperties": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}

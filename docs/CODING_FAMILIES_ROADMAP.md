@@ -68,11 +68,14 @@ Target: prove format support before producing new tasks.
 5. Run through Harbor and emit ATIF, `TrajectoryRecord`, and `RewardRecord`.
 6. Verify deterministic rescoring and export release shards.
 
-Current v0.3 status:
+Current v0.4 status:
 
-- Terminal-Bench directory import, family QA, and Harbor repackaging work;
-- SWE-bench JSON/JSONL import and family QA work;
-- NL2Repo contract JSON/JSONL import and family QA work;
+- Terminal-Bench directory import, deterministic recipe compilation, local
+  Starter/Oracle QA, and Harbor packaging work;
+- SWE-bench JSON/JSONL import, single-fault mutation generation, pinned
+  image/commit runtime packaging, and per-test hidden reward compilation work;
+- NL2Repo contract import, independent-artifact provenance gates, empty-repo
+  Harbor compilation, and local Starter/Oracle QA work;
 - DeepSWE and FrontierSWE have registered capability descriptors, without a
   false claim of runnable import or generation support.
 

@@ -35,7 +35,7 @@ dataclasses additionally recompute and verify task content hashes at load time.
 
 ## Quality and scale control plane
 
-The v0.3 control-plane modules live in `src/terminal_data_factory/`:
+The v0.4 control-plane modules live in `src/terminal_data_factory/`:
 
 | Capability | Module | What it prevents |
 | --- | --- | --- |
@@ -60,9 +60,9 @@ support is deliberately explicit:
 
 | Family | Import | Harbor packaging | New-task generation |
 | --- | --- | --- | --- |
-| Terminal-Bench | Implemented | Implemented for native task directories | Planned recipes |
-| SWE-bench | Implemented for JSON/JSONL instances | Requires pinned SWE-bench runtime adapter | Planned mutation/issue pipelines |
-| NL2Repo | Implemented for contract JSON/JSONL | Requires materialized environment and tests | Planned contract-first generator |
+| Terminal-Bench | Implemented | Native import and recipe compilation | Deterministic recipe pipeline implemented |
+| SWE-bench | Implemented for JSON/JSONL instances | Pinned image/commit packager implemented | Single-fault mutation pipeline implemented |
+| NL2Repo | Implemented for contract JSON/JSONL | Empty-repo artifact packager implemented | Contract-first bundle compiler implemented |
 | DeepSWE | Capability descriptor only | Planned | Expert-light implementation subset later |
 | FrontierSWE | Capability descriptor only | Planned | Expert-dependent; not claimed |
 
@@ -93,6 +93,8 @@ bulk source workspaces and packaged tasks remain outside Git.
 See [`docs/CODING_FAMILIES_ROADMAP.md`](docs/CODING_FAMILIES_ROADMAP.md) for
 the staged plan covering long-horizon coding, NL2Repo, Terminal-Bench,
 SWE-bench, DeepSWE, and FrontierSWE.
+Executable P0 recipe formats, commands, QA boundaries, and promotion gates are
+documented in [`docs/PRODUCTION_PIPELINES.md`](docs/PRODUCTION_PIPELINES.md).
 
 ### Record validation and deduplication
 

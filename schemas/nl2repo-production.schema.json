@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/haolpku/SWEFoundry/schemas/nl2repo-production.schema.json",
+  "title": "SWEFoundry NL2Repo Production Bundle v1",
+  "type": "object",
+  "required": ["task_id", "instruction", "contract", "starter_files", "reference_files", "hidden_test_files", "provenance"],
+  "properties": {
+    "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "instruction": {"type": "string", "minLength": 1},
+    "contract": {"type": "object", "minProperties": 1},
+    "starter_files": {"type": "object", "additionalProperties": {"type": "string"}},
+    "reference_files": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}},
+    "hidden_test_files": {
+      "type": "object", "required": ["verifier.py"], "additionalProperties": {"type": "string"}
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["contract_run_id", "solution_run_id", "verifier_run_id"],
+      "properties": {
+        "contract_run_id": {"type": "string", "minLength": 1},
+        "solution_run_id": {"type": "string", "minLength": 1},
+        "verifier_run_id": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "additionalProperties": true
+}

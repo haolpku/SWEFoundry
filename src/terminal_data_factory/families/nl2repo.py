@@ -4,6 +4,30 @@ from pathlib import Path
 
 from ..records import LineageEdge, TaskRecord, content_hash
 from .base import FamilyDescriptor, common_profile, read_json_rows
+from .production import compile_harbor_task, spec_from_recipe
+
+
+def _production_row(row: dict, *, source_ref: str, dataset_version: str) -> dict:
+    provenance = dict(row.get("provenance", {}))
+    run_ids = [provenance.get(name) for name in ("contract_run_id", "solution_run_id", "verifier_run_id")]
+    if any(not value for value in run_ids) or len(set(run_ids)) != 3:
+        raise ValueError(
+            f"{row.get('task_id')}: contract_run_id, solution_run_id, and verifier_run_id must be non-empty and distinct"
+        )
+    if not row.get("contract"):
+        raise ValueError(f"{row.get('task_id')}: contract is required")
+    value = dict(row)
+    value["family"] = "nl2repo"
+    value["solution_files"] = row.get("reference_files", row.get("solution_files", {}))
+    value["verifier_files"] = row.get("hidden_test_files", row.get("verifier_files", {}))
+    value["horizon"] = row.get("horizon", "long")
+    value["provenance"] = {
+        **provenance,
+        "source_ref": source_ref,
+        "dataset_version": dataset_version,
+        "contract": row["contract"],
+    }
+    return value
 
 
 class NL2RepoFamily:
@@ -54,4 +78,10 @@ class NL2RepoFamily:
         return errors
 
     def package_for_harbor(self, source: Path, output: Path, *, source_ref: str, dataset_version: str) -> list[Path]:
-        raise NotImplementedError("nl2repo Harbor packaging requires materialized environment and tests artifacts")
+        tasks = []
+        for row in read_json_rows(source):
+            tasks.append(compile_harbor_task(
+                spec_from_recipe(_production_row(row, source_ref=source_ref, dataset_version=dataset_version), expected_family="nl2repo"),
+                output,
+            ))
+        return tasks

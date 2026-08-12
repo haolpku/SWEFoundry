@@ -20,10 +20,13 @@ from .calibration import calibrate
 from .hf_export import export_jsonl_shards
 from .families import builtin_families, get_family
 from .families.base import write_jsonl
+from .families.swe_mutation import generate_swe_mutations
+from .families.terminal_recipe import generate_terminal_tasks
 from .lineage import exact_duplicate_groups, load_task_records, query_duplicate_groups, validate_lineage
 from .mutants import generate_mutants, load_rules
 from .records import RewardRecord, TrajectoryRecord
 from .recovery import recover_trial
+from .production_qa import audit_production_task
 
 
 def _read_jsonl(path: Path) -> list[dict]:
@@ -158,6 +161,18 @@ def build_parser() -> argparse.ArgumentParser:
     family_package.add_argument("--source-ref", required=True)
     family_package.add_argument("--dataset-version", required=True)
     family_package.add_argument("--output", type=Path, required=True)
+    terminal_generate = sub.add_parser("terminal-generate")
+    terminal_generate.add_argument("--recipes", type=Path, required=True)
+    terminal_generate.add_argument("--output", type=Path, required=True)
+    swe_mutate = sub.add_parser("swe-mutate")
+    swe_mutate.add_argument("--repo", type=Path, required=True)
+    swe_mutate.add_argument("--recipes", type=Path, required=True)
+    swe_mutate.add_argument("--output", type=Path, required=True)
+    production_qa = sub.add_parser("production-qa")
+    production_qa.add_argument("--tasks-root", type=Path, required=True)
+    production_qa.add_argument("--output", type=Path)
+    production_qa.add_argument("--repeats", type=int, default=2)
+    production_qa.add_argument("--timeout", type=int, default=300)
     return parser
 
 
@@ -317,6 +332,23 @@ def main() -> int:
         )
         print(json.dumps({"family": args.family, "packaged": len(destinations), "tasks": [str(path) for path in destinations]}, indent=2))
         return 0
+    if args.command == "terminal-generate":
+        tasks = generate_terminal_tasks(args.recipes.resolve(), args.output.resolve())
+        print(json.dumps({"generated": len(tasks), "tasks": [str(path) for path in tasks]}, indent=2))
+        return 0
+    if args.command == "swe-mutate":
+        rows = generate_swe_mutations(args.repo.resolve(), args.recipes.resolve(), args.output.resolve())
+        print(json.dumps({"generated": len(rows), "output": str(args.output)}, indent=2))
+        return 0
+    if args.command == "production-qa":
+        tasks = sorted(path for path in args.tasks_root.resolve().iterdir() if (path / "task.toml").is_file())
+        reports = [audit_production_task(path, repeats=args.repeats, timeout=args.timeout) for path in tasks]
+        summary = {"passed": bool(reports) and all(item["passed"] for item in reports), "tasks": reports}
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(json.dumps(summary, indent=2, sort_keys=True))
+        return 0 if summary["passed"] else 1
     raise AssertionError(args.command)
 
 
