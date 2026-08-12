@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "schema_version": "1.0",
+  "task_count": 3,
+  "tasks": [
+    {
+      "case_count": 8,
+      "deterministic": true,
+      "oracle_rewards": [
+        1.0,
+        1.0
+      ],
+      "passed": true,
+      "starter_reward": 0.0,
+      "task_id": "build-feature-flags"
+    },
+    {
+      "case_count": 8,
+      "deterministic": true,
+      "oracle_rewards": [
+        1.0,
+        1.0
+      ],
+      "passed": true,
+      "starter_reward": 0.25,
+      "task_id": "repair-jsonl-ledger"
+    },
+    {
+      "case_count": 10,
+      "deterministic": true,
+      "oracle_rewards": [
+        1.0,
+        1.0
+      ],
+      "passed": true,
+      "starter_reward": 0.1,
+      "task_id": "reproduce-url-router"
+    }
+  ]
+}

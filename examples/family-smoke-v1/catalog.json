@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "tasks": [
+    {
+      "task_id": "repair-jsonl-ledger",
+      "family": "synthetic-repair",
+      "reward_type": "test_fraction"
+    },
+    {
+      "task_id": "build-feature-flags",
+      "family": "nl2repo-lite",
+      "reward_type": "test_fraction"
+    },
+    {
+      "task_id": "reproduce-url-router",
+      "family": "repo-reproduction",
+      "reward_type": "test_fraction"
+    }
+  ]
+}

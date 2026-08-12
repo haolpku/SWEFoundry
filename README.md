@@ -8,6 +8,18 @@ contract compilation, code/verifier synthesis, mutant planning, independent
 QA, Harbor execution planning, rollout calibration, and release packaging.
 Static quality and calibrated difficulty are deliberately separate gates.
 
+## Cross-family smoke batch
+
+[`examples/family-smoke-v1`](examples/family-smoke-v1) adds three compact,
+deterministic tasks that exercise `synthetic-repair`, `nl2repo-lite`, and
+`repo-reproduction` semantics through the same Harbor-shaped task contract.
+Their independent audit requires the Starter to fail, the Oracle to pass every
+behavioral check, and repeated Oracle rewards to be byte-for-byte stable.
+
+```sh
+python scripts/validate_family_smoke.py
+```
+
 ## Current verified example
 
 [`examples/api-batch-10-v1`](examples/api-batch-10-v1) contains the second,
