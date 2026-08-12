@@ -37,6 +37,7 @@ class TaskRecord:
     environment: dict[str, Any]
     verifier: dict[str, Any]
     provenance: dict[str, Any]
+    profile: dict[str, Any] = field(default_factory=dict)
     lineage: tuple[LineageEdge, ...] = ()
     schema_version: str = SCHEMA_VERSION
 
@@ -49,13 +50,17 @@ class TaskRecord:
                 raise ValueError("repo_snapshot requires repo_url and base_commit")
 
     def identity_payload(self) -> dict[str, Any]:
-        return {
+        payload = {
             "instruction": self.instruction,
             "workspace_kind": self.workspace_kind,
             "workspace": self.workspace,
             "environment": self.environment,
             "verifier": self.verifier,
         }
+        # Preserve hashes emitted before the optional v0.3 task profile existed.
+        if self.profile:
+            payload["profile"] = self.profile
+        return payload
 
     @property
     def task_hash(self) -> str:

@@ -9,7 +9,7 @@ from terminal_data_factory.calibration import calibrate
 from terminal_data_factory.hf_export import export_jsonl_shards
 from terminal_data_factory.lineage import exact_duplicate_groups, query_duplicate_groups
 from terminal_data_factory.mutants import MutationRule, generate_mutants
-from terminal_data_factory.records import RewardRecord, TaskRecord, TrajectoryRecord
+from terminal_data_factory.records import RewardRecord, TaskRecord, TrajectoryRecord, content_hash
 from terminal_data_factory.recovery import recover_trial
 
 
@@ -35,6 +35,21 @@ def test_task_hash_round_trip_and_tamper_detection() -> None:
     damaged["instruction"] = "different"
     with pytest.raises(ValueError, match="task_hash"):
         TaskRecord.from_dict(damaged)
+
+
+def test_empty_profile_preserves_pre_v03_task_hash() -> None:
+    original = task()
+    legacy_identity = {
+        "instruction": original.instruction,
+        "workspace_kind": original.workspace_kind,
+        "workspace": original.workspace,
+        "environment": original.environment,
+        "verifier": original.verifier,
+    }
+    payload = original.as_dict()
+    payload.pop("profile")
+    payload["task_hash"] = content_hash(legacy_identity)
+    assert TaskRecord.from_dict(payload).task_hash == payload["task_hash"]
 
 
 def test_duplicate_detection_distinguishes_identity_and_query() -> None:

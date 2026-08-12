@@ -16,6 +16,15 @@
     "environment": {"type": "object"},
     "verifier": {"type": "object"},
     "provenance": {"type": "object"},
+    "profile": {
+      "type": "object",
+      "properties": {
+        "objective_type": {"type": "string"},
+        "horizon": {"enum": ["short", "medium", "long", "ultra_long"]},
+        "reward_shape": {"enum": ["binary", "test_fraction", "dense", "correctness_gated_continuous"]}
+      },
+      "additionalProperties": true
+    },
     "lineage": {
       "type": "array",
       "items": {

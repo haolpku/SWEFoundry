@@ -18,6 +18,8 @@ from .operators import ArtifactStore, PipelineRuntime, builtin_registry
 from .batch_qa import run_batch_qa, write_summary
 from .calibration import calibrate
 from .hf_export import export_jsonl_shards
+from .families import builtin_families, get_family
+from .families.base import write_jsonl
 from .lineage import exact_duplicate_groups, load_task_records, query_duplicate_groups, validate_lineage
 from .mutants import generate_mutants, load_rules
 from .records import RewardRecord, TrajectoryRecord
@@ -141,6 +143,21 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--output-dir", type=Path, required=True)
     export.add_argument("--prefix", required=True)
     export.add_argument("--shard-size", type=int, default=500)
+    sub.add_parser("family-list")
+    family_import = sub.add_parser("family-import")
+    family_import.add_argument("--family", required=True)
+    family_import.add_argument("--source", type=Path, required=True)
+    family_import.add_argument("--source-ref", required=True)
+    family_import.add_argument("--dataset-version", required=True)
+    family_import.add_argument("--output", type=Path, required=True)
+    family_validate = sub.add_parser("family-validate")
+    family_validate.add_argument("--tasks", type=Path, required=True)
+    family_package = sub.add_parser("family-package")
+    family_package.add_argument("--family", required=True)
+    family_package.add_argument("--source", type=Path, required=True)
+    family_package.add_argument("--source-ref", required=True)
+    family_package.add_argument("--dataset-version", required=True)
+    family_package.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -262,6 +279,43 @@ def main() -> int:
     if args.command == "hf-export":
         manifest = export_jsonl_shards(_iter_jsonl(args.input), args.output_dir.resolve(), prefix=args.prefix, shard_size=args.shard_size)
         print(json.dumps(manifest, indent=2, sort_keys=True))
+        return 0
+    if args.command == "family-list":
+        for family_id, family in sorted(builtin_families().items()):
+            print(json.dumps(family.descriptor.as_dict(), sort_keys=True))
+        return 0
+    if args.command == "family-import":
+        family = get_family(args.family)
+        records = family.import_records(
+            args.source.resolve(),
+            source_ref=args.source_ref,
+            dataset_version=args.dataset_version,
+        )
+        count = write_jsonl(records, args.output.resolve())
+        print(json.dumps({"family": args.family, "imported": count, "output": str(args.output)}, indent=2))
+        return 0
+    if args.command == "family-validate":
+        records = load_task_records(args.tasks)
+        errors = []
+        for record in records:
+            try:
+                family = get_family(record.family)
+            except ValueError as exc:
+                errors.append(f"{record.task_id}: {exc}")
+                continue
+            errors.extend(family.validate_record(record))
+        report = {"passed": not errors, "records": len(records), "errors": errors}
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if not errors else 1
+    if args.command == "family-package":
+        family = get_family(args.family)
+        destinations = family.package_for_harbor(
+            args.source.resolve(),
+            args.output.resolve(),
+            source_ref=args.source_ref,
+            dataset_version=args.dataset_version,
+        )
+        print(json.dumps({"family": args.family, "packaged": len(destinations), "tasks": [str(path) for path in destinations]}, indent=2))
         return 0
     raise AssertionError(args.command)
 

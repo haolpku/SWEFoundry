@@ -35,7 +35,7 @@ dataclasses additionally recompute and verify task content hashes at load time.
 
 ## Quality and scale control plane
 
-The v0.2 control-plane modules live in `src/terminal_data_factory/`:
+The v0.3 control-plane modules live in `src/terminal_data_factory/`:
 
 | Capability | Module | What it prevents |
 | --- | --- | --- |
@@ -46,6 +46,53 @@ The v0.2 control-plane modules live in `src/terminal_data_factory/`:
 | Difficulty calibration | `calibration.py` | Scaling thousands of trivial or broken tasks |
 | Delayed-reward recovery | `recovery.py` | Dropping valid Harbor trajectories after artifact races |
 | HF shard export | `hf_export.py` | Millions of tiny files and non-reproducible releases |
+
+## Task-family adapters
+
+SWEFoundry treats `long-horizon` as a profile of a task, not a mutually
+exclusive benchmark family. NL2Repo, repository repair, terminal, DeepSWE,
+and FrontierSWE tasks can all be long-horizon. Every imported `TaskRecord`
+therefore carries an `objective_type`, `horizon`, and `reward_shape` profile.
+
+The `TaskFamily` protocol separates benchmark-specific import, validation,
+workspace materialization, Harbor packaging, and scoring semantics. Current
+support is deliberately explicit:
+
+| Family | Import | Harbor packaging | New-task generation |
+| --- | --- | --- | --- |
+| Terminal-Bench | Implemented | Implemented for native task directories | Planned recipes |
+| SWE-bench | Implemented for JSON/JSONL instances | Requires pinned SWE-bench runtime adapter | Planned mutation/issue pipelines |
+| NL2Repo | Implemented for contract JSON/JSONL | Requires materialized environment and tests | Planned contract-first generator |
+| DeepSWE | Capability descriptor only | Planned | Expert-light implementation subset later |
+| FrontierSWE | Capability descriptor only | Planned | Expert-dependent; not claimed |
+
+```sh
+swef family-list
+
+swef family-import \
+  --family swe-bench \
+  --source /data/swebench_verified.jsonl \
+  --source-ref hf://princeton-nlp/SWE-bench_Verified \
+  --dataset-version verified-v1 \
+  --output records/swebench-tasks.jsonl
+
+swef family-validate --tasks records/swebench-tasks.jsonl
+
+swef family-package \
+  --family terminal-bench \
+  --source /data/terminal-tasks \
+  --source-ref harbor://terminal-bench/custom-v1 \
+  --dataset-version custom-v1 \
+  --output /data/harbor-ready
+```
+
+`family-package` refuses to overwrite an existing task directory. Imported
+records retain the original source reference and an artifact/content hash;
+bulk source workspaces and packaged tasks remain outside Git.
+
+See [`docs/CODING_FAMILIES_ROADMAP.md`](docs/CODING_FAMILIES_ROADMAP.md) for
+the staged plan covering long-horizon coding, NL2Repo, Terminal-Bench,
+SWE-bench, DeepSWE, and FrontierSWE.
 
 ### Record validation and deduplication
 
