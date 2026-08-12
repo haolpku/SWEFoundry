@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+from typing import Iterator
 
 from .audit import audit_task
 from .planning import create_plan
@@ -14,6 +16,23 @@ from .multistep import (
 from .validation import discover_tasks, validate_catalog, validate_task
 from .operators import ArtifactStore, PipelineRuntime, builtin_registry
 from .batch_qa import run_batch_qa, write_summary
+from .calibration import calibrate
+from .hf_export import export_jsonl_shards
+from .lineage import exact_duplicate_groups, load_task_records, query_duplicate_groups, validate_lineage
+from .mutants import generate_mutants, load_rules
+from .records import RewardRecord, TrajectoryRecord
+from .recovery import recover_trial
+
+
+def _read_jsonl(path: Path) -> list[dict]:
+    return list(_iter_jsonl(path))
+
+
+def _iter_jsonl(path: Path) -> Iterator[dict]:
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                yield json.loads(line)
 
 
 def factory_root() -> Path:
@@ -67,7 +86,7 @@ def cmd_audit_all(root: Path, output: Path | None, promote: bool) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="tdf")
+    parser = argparse.ArgumentParser(prog=Path(sys.argv[0]).name)
     parser.add_argument("--root", type=Path, default=factory_root())
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("catalog")
@@ -99,6 +118,29 @@ def build_parser() -> argparse.ArgumentParser:
     batch_qa.add_argument("--limit", type=int, default=10)
     batch_qa.add_argument("--repeats", type=int, default=2)
     batch_qa.add_argument("--timeout", type=int, default=180)
+    records = sub.add_parser("records-validate")
+    records.add_argument("--tasks", type=Path, required=True)
+    records.add_argument("--trajectories", type=Path)
+    records.add_argument("--rewards", type=Path)
+    mutants = sub.add_parser("mutants-generate")
+    mutants.add_argument("--task-root", type=Path, required=True)
+    mutants.add_argument("--rules", type=Path, required=True)
+    mutants.add_argument("--output", type=Path, required=True)
+    calibration = sub.add_parser("calibrate")
+    calibration.add_argument("--trajectories", type=Path, required=True)
+    calibration.add_argument("--rewards", type=Path, required=True)
+    calibration.add_argument("--output", type=Path, required=True)
+    recovery = sub.add_parser("recover-reward")
+    recovery.add_argument("--trial", type=Path, required=True)
+    recovery.add_argument("--task-id", required=True)
+    recovery.add_argument("--task-version", required=True)
+    recovery.add_argument("--task-hash", required=True)
+    recovery.add_argument("--output", type=Path, required=True)
+    export = sub.add_parser("hf-export")
+    export.add_argument("--input", type=Path, required=True)
+    export.add_argument("--output-dir", type=Path, required=True)
+    export.add_argument("--prefix", required=True)
+    export.add_argument("--shard-size", type=int, default=500)
     return parser
 
 
@@ -169,6 +211,58 @@ def main() -> int:
             write_summary(summary, args.output, args.input)
         print(json.dumps(summary, indent=2, sort_keys=True))
         return 0 if summary["passed"] else 1
+    if args.command == "records-validate":
+        tasks = load_task_records(args.tasks)
+        errors = validate_lineage(tasks)
+        task_keys = {(item.task_id, item.task_version, item.task_hash) for item in tasks}
+        trajectories = [TrajectoryRecord.from_dict(item) for item in _read_jsonl(args.trajectories)] if args.trajectories else []
+        trajectory_ids = {item.trajectory_id for item in trajectories}
+        for item in trajectories:
+            if (item.task_id, item.task_version, item.task_hash) not in task_keys:
+                errors.append(f"{item.trajectory_id}: unknown task identity")
+        rewards = [RewardRecord.from_dict(item) for item in _read_jsonl(args.rewards)] if args.rewards else []
+        for item in rewards:
+            if item.trajectory_id not in trajectory_ids:
+                errors.append(f"{item.trajectory_id}: reward has no trajectory")
+            if (item.task_id, item.task_version, item.task_hash) not in task_keys:
+                errors.append(f"{item.trajectory_id}: reward has unknown task identity")
+        summary = {
+            "passed": not errors,
+            "tasks": len(tasks),
+            "trajectories": len(trajectories),
+            "rewards": len(rewards),
+            "exact_duplicates": exact_duplicate_groups(tasks),
+            "query_duplicates": query_duplicate_groups(tasks),
+            "errors": errors,
+        }
+        print(json.dumps(summary, indent=2, sort_keys=True))
+        return 0 if not errors else 1
+    if args.command == "mutants-generate":
+        artifacts = generate_mutants(args.task_root.resolve(), load_rules(args.rules), args.output.resolve())
+        print(json.dumps({"generated": len(artifacts), "output": str(args.output)}, indent=2))
+        return 0
+    if args.command == "calibrate":
+        trajectories = [TrajectoryRecord.from_dict(item) for item in _read_jsonl(args.trajectories)]
+        rewards = [RewardRecord.from_dict(item) for item in _read_jsonl(args.rewards)]
+        models = {item.trajectory_id: item.model for item in trajectories}
+        report = {"schema_version": "difficulty-v1", "tasks": [item.as_dict() for item in calibrate(rewards, models)]}
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0
+    if args.command == "recover-reward":
+        record = recover_trial(args.trial.resolve(), task_id=args.task_id, task_version=args.task_version, task_hash=args.task_hash)
+        if record is None:
+            print("No strictly recoverable reward found")
+            return 1
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(record.as_dict(), sort_keys=True) + "\n", encoding="utf-8")
+        print(json.dumps(record.as_dict(), indent=2, sort_keys=True))
+        return 0
+    if args.command == "hf-export":
+        manifest = export_jsonl_shards(_iter_jsonl(args.input), args.output_dir.resolve(), prefix=args.prefix, shard_size=args.shard_size)
+        print(json.dumps(manifest, indent=2, sort_keys=True))
+        return 0
     raise AssertionError(args.command)
 
 

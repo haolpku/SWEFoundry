@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/haolpku/SWEFoundry/schemas/reward-record.schema.json",
+  "title": "SWEFoundry RewardRecord v1",
+  "type": "object",
+  "required": ["schema_version", "trajectory_id", "task_id", "task_version", "task_hash", "reward", "status", "reward_source", "metrics", "failure_tags"],
+  "properties": {
+    "schema_version": {"const": "swefoundry-records-v1"},
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "task_version": {"type": "string", "minLength": 1},
+    "task_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "reward": {"type": "number", "minimum": 0, "maximum": 1},
+    "status": {"enum": ["accept", "accept_recovered", "partial", "reject"]},
+    "reward_source": {"enum": ["online", "posthoc_artifact", "manual"]},
+    "metrics": {"type": "object"},
+    "failure_tags": {"type": "array", "items": {"type": "string"}},
+    "original_result_hash": {"type": ["string", "null"]},
+    "recovery_reason": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

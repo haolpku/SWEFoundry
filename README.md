@@ -1,12 +1,152 @@
-# Code Data Infra
+# SWEFoundry
 
-Operator-style infrastructure for producing and auditing multi-step,
-Greenfield Terminal-Bench candidates.
+Unified infrastructure for producing verifiable coding tasks, Harbor rollouts,
+rewards, and training trajectories.
 
 The factory separates topic discovery, portfolio selection, task design,
 contract compilation, code/verifier synthesis, mutant planning, independent
 QA, Harbor execution planning, rollout calibration, and release packaging.
 Static quality and calibrated difficulty are deliberately separate gates.
+
+## Data lifecycle
+
+SWEFoundry treats task correctness, model difficulty, and trajectory quality as
+separate gates:
+
+```text
+source → construct → materialize → independent QA → difficulty calibration
+       → Harbor rollout → reward recovery/filtering → Hugging Face shards
+```
+
+The control plane is built around three records:
+
+- `TaskRecord`: immutable task identity, instruction, workspace materializer,
+  environment, verifier, provenance, version, content hash, and lineage;
+- `TrajectoryRecord`: one model/agent attempt, its exact task hash, ATIF URI,
+  token/cost/time metrics, and runtime configuration;
+- `RewardRecord`: the score and component metrics for one trajectory, including
+  whether it was online, recovered from delayed artifacts, partial, or rejected.
+
+One task can have many trajectories. Reward records may be recomputed without
+changing the original task or trajectory.
+
+Machine-readable JSON Schemas are published under `schemas/`. The Python
+dataclasses additionally recompute and verify task content hashes at load time.
+
+## Quality and scale control plane
+
+The v0.2 control-plane modules live in `src/terminal_data_factory/`:
+
+| Capability | Module | What it prevents |
+| --- | --- | --- |
+| Common records | `records.py` | Incompatible per-benchmark metadata |
+| Version/hash/lineage | `records.py`, `lineage.py` | Silent task drift, duplicates, and train/test leakage |
+| Independent task QA | `batch_qa.py`, `audit.py` | Trusting a task's self-reported audit |
+| Mutant generation | `mutants.py` | Weak verifiers that accept plausible wrong solutions |
+| Difficulty calibration | `calibration.py` | Scaling thousands of trivial or broken tasks |
+| Delayed-reward recovery | `recovery.py` | Dropping valid Harbor trajectories after artifact races |
+| HF shard export | `hf_export.py` | Millions of tiny files and non-reproducible releases |
+
+### Record validation and deduplication
+
+`task_hash` covers the visible instruction, workspace identity, environment,
+and verifier. A trajectory or reward must reference the same task ID, version,
+and hash. The validator also reports exact content duplicates and normalized
+query duplicates.
+
+```sh
+swef records-validate \
+  --tasks records/tasks.jsonl \
+  --trajectories records/trajectories.jsonl \
+  --rewards records/rewards.jsonl
+```
+
+### Recipe-driven mutants
+
+Mutation recipes apply one bounded replacement each. Generated mutants are
+content-addressed and written with a manifest. Compilation, partial-test, and
+mutation-score gates remain the responsibility of independent QA; malformed
+or non-running mutants must not inflate verifier quality.
+
+```json
+{
+  "rules": [
+    {
+      "name": "ignore-duplicate-id",
+      "path": "solution/files/ledger.py",
+      "find": "raise ValueError(\"duplicate id\")",
+      "replace": "continue"
+    }
+  ]
+}
+```
+
+```sh
+swef mutants-generate --task-root TASK --rules mutation-rules.json --output MUTANTS
+```
+
+### Difficulty calibration
+
+Calibration consumes repeated rewards and trajectory-to-model mappings. It
+reports full-pass rate, mean partial reward, per-model pass rates, and one of
+`trivial`, `easy`, `medium`, `hard`, or `frontier_or_broken`. The final label
+must be based on multiple model families and seeds; Oracle success alone is not
+a difficulty measurement.
+
+```sh
+swef calibrate \
+  --trajectories records/trajectories.jsonl \
+  --rewards records/rewards.jsonl \
+  --output reports/difficulty.json
+```
+
+### Strict recovered rescore
+
+Harbor or shared storage can expose a completed `reward.txt`/`reward.json`
+after the initial result was marked `RewardFileNotFoundError`. Recovery is
+allowed only when the original exception is allowlisted, both reward files are
+present and agree, the score is valid, and no compliance or anti-hack failure
+is present. The original result is never overwritten; a new RewardRecord keeps
+its hash and recovery reason.
+
+```sh
+swef recover-reward \
+  --trial HARBOR_TRIAL_DIR \
+  --task-id TASK_ID --task-version 1.0.0 --task-hash sha256:... \
+  --output records/recovered-reward.jsonl
+```
+
+### Hugging Face shards
+
+The streaming standard-library exporter currently emits deterministic JSONL
+shards, SHA-256 checksums, and a release manifest without retaining the full
+dataset in memory. Parquet is a planned optional backend; compressed task
+artifacts and full ATIF files should be uploaded separately and referenced by
+URI and checksum from the records.
+
+```sh
+swef hf-export \
+  --input records/trajectories.jsonl \
+  --output-dir release/trajectories \
+  --prefix train --shard-size 500
+```
+
+## Storage boundary
+
+GitHub contains only infrastructure code, schemas, recipes, manifests, tests,
+and tiny smoke fixtures. It must not contain production tasks, reference
+solutions, hidden tests, raw trajectories, or full QA logs.
+
+| Content | Storage |
+| --- | --- |
+| Code, schemas, recipes, tiny smoke fixtures | GitHub |
+| Released task/record shards | Hugging Face Datasets |
+| Hidden verifiers and restricted solutions | Private Hugging Face/VEPFS |
+| Raw workspaces, Docker cache, rollout logs | VEPFS/object storage |
+| Full ATIF trajectories and compressed artifacts | Hugging Face/VEPFS |
+
+The public smoke fixtures below intentionally include their solutions and are
+not contamination-resistant benchmark data.
 
 ## Cross-family smoke batch
 
@@ -56,10 +196,13 @@ List and run the control-plane operators:
 
 ```sh
 tdf operator-list
-tdf operator-run \
-  --pipeline data_infra/pipelines/topic_to_calibration.json \
+tdf pipeline-run \
+  --spec data_infra/pipelines/topic_to_calibration.json \
   --work-dir /tmp/tdf-operator-run
 ```
+
+`swef` is the preferred project CLI. The historical `tdf` executable remains
+as a backward-compatible alias for existing automation.
 
 Recheck the ten-task example:
 
@@ -118,7 +261,8 @@ aggregate per-check correctness so partial but real progress is not discarded.
 ## Repository layout
 
 - `src/terminal_data_factory/`: operator runtime, built-in operators,
-  multi-step validator, and independent batch QA;
+  common records, lineage, mutation, calibration, reward recovery, shard
+  export, multi-step validation, and independent batch QA;
 - `data_infra/`: operator catalog, pipeline DAG, inputs, and scale-out plan;
 - `scripts/`: deterministic API-worker, compiler, normalizer, materializer,
   repair, monotonic-promotion, and handoff builders;
@@ -126,6 +270,7 @@ aggregate per-check correctness so partial but real progress is not discarded.
   false-positive regression;
 - `examples/api-batch-10-v1/`: self-contained expert-review handoff and
   machine-readable evidence;
+- `examples/family-smoke-v1/`: three tiny cross-family regression fixtures;
 - `docs/`: sandbox, open-source reference, and 1,000/10,000-task scaling notes.
 
 ## Credentials and model APIs

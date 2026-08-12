@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/haolpku/SWEFoundry/schemas/trajectory-record.schema.json",
+  "title": "SWEFoundry TrajectoryRecord v1",
+  "type": "object",
+  "required": ["schema_version", "trajectory_id", "task_id", "task_version", "task_hash", "model", "agent", "attempt", "atif_uri", "metadata"],
+  "properties": {
+    "schema_version": {"const": "swefoundry-records-v1"},
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "task_version": {"type": "string", "minLength": 1},
+    "task_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "model": {"type": "string", "minLength": 1},
+    "agent": {"type": "string", "minLength": 1},
+    "attempt": {"type": "integer", "minimum": 0},
+    "atif_uri": {"type": "string", "minLength": 1},
+    "steps": {"type": ["integer", "null"], "minimum": 0},
+    "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "cost_usd": {"type": ["number", "null"], "minimum": 0},
+    "wall_time_sec": {"type": ["number", "null"], "minimum": 0},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

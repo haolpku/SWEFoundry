@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/haolpku/SWEFoundry/schemas/task-record.schema.json",
+  "title": "SWEFoundry TaskRecord v1",
+  "type": "object",
+  "required": ["schema_version", "task_id", "task_version", "task_hash", "family", "instruction", "workspace_kind", "workspace", "environment", "verifier", "provenance", "lineage"],
+  "properties": {
+    "schema_version": {"const": "swefoundry-records-v1"},
+    "task_id": {"type": "string", "minLength": 1},
+    "task_version": {"type": "string", "minLength": 1},
+    "task_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "family": {"type": "string", "minLength": 1},
+    "instruction": {"type": "string", "minLength": 1},
+    "workspace_kind": {"enum": ["repo_snapshot", "empty_repo", "oracle_backed", "filesystem"]},
+    "workspace": {"type": "object"},
+    "environment": {"type": "object"},
+    "verifier": {"type": "object"},
+    "provenance": {"type": "object"},
+    "lineage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relation", "artifact_hash"],
+        "properties": {
+          "relation": {"type": "string", "minLength": 1},
+          "artifact_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "parent_task_id": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
